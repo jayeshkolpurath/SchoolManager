@@ -1,0 +1,34 @@
+﻿body {
+    float: left;
+}
+
+._txtText{
+    margin-left:1vw;
+    vertical-align: top;
+}
+
+#_btnAdd{
+    width:2vw;    
+}
+#_btnEdit{
+    margin-left:1vw;
+    width:2vw;
+    margin-top: -2px;
+}
+
+#_btnDelete{
+    margin-left:1vw;
+    height: 1.7vw;
+}
+
+#_btnOK{
+height:2vw;
+margin-left: 50vw;
+}
+
+._lblGroupHd{
+    font-weight: bold;
+    float: left;
+    width: 19vw;
+    font-size: larger;
+}

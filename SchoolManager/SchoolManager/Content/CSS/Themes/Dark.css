@@ -1,0 +1,127 @@
+﻿.ThemeBody a{
+    color:white;
+    background: gray;
+}
+
+.ThemeBody a:link{
+    color: black;
+}
+
+.ThemeTitlePanel{
+    color: #323a45;
+}
+
+.ThemeTitleItem{
+    color:black;
+}
+
+.ThemeTitleText{
+}
+
+.ThemeUserText{
+}
+
+.ThemelnkSignOut{
+    color:white;
+    background:#626f80;
+}
+
+.ThemeTopPanel{
+    color:white;
+    background: linear-gradient(180deg, black 3%,grey 40%);
+}
+
+.ThemeTopMenu a:hover{
+    color:black;
+}
+
+
+.ThemeTopMenu a{
+    color:white;    
+}
+
+.ThemeTopMenu{
+   color:white;
+}
+
+.ThemeTopMenu:hover{
+    color:white;
+    background:linear-gradient(180deg,white,grey 40%);
+}
+
+.ThemeLeftPanel{
+    background-color: grey;
+    background: black; 
+}
+
+.ThemeLeftMenu{
+    color: white;
+}
+
+.ThemeLeftMenu:hover{
+    background:grey;
+}
+
+.ThemeLeftMenu a :link{
+    background-color: #fff;
+    background: #626f80;
+
+}
+
+.ThemeLeftMenu a:hover{
+    background-color: #fff;
+    background: #3b3c3d;
+}
+
+.ThemePagePanel{
+    border-color: cadetblue;
+}
+
+.ThemeBottomPanel{
+background:#858a8f;
+text-align: center;
+}
+
+.ThemeFooter{
+    color:white;
+    background:black;
+}
+.ThemeErrorMessage {
+    color:darkred;
+}
+
+
+
+.Theme_txtText{
+    color:black;
+    background: white;
+        }
+        
+        .Theme_lblInput{
+        color:black;
+        }
+        
+        .Theme_lblGroup{
+        border-color:white;
+        }
+        
+        .Theme_txtNumber{
+    color:black;
+        }
+        
+        .Theme_btnOK{
+            color:darkgray;
+        }
+        
+        .Theme_btnCancel{
+            color:gray;
+        }
+        
+        ._lblErrorMsg{
+        color:red;
+        }
+        
+        .Theme_lblWarning{
+            color:red;
+        }
+        

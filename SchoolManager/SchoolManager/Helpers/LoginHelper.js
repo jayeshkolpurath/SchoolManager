@@ -1,0 +1,3 @@
+﻿class LoginHelper extends HelperBase {
+
+}

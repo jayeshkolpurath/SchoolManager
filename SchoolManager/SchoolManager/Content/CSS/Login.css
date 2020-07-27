@@ -1,0 +1,18 @@
+﻿body {
+    float: left;
+    width:100%;
+}
+
+#LoginPanel {
+    border-width: thin;
+    border-style: solid;
+    border-radius: 25px;
+    margin-left: 35%;
+    width: 25%;
+    margin-top: 10%;
+    padding: 25px;
+}
+#lbl_ErrorMsg{
+    float: left;
+    color:red;
+}
