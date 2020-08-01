@@ -5,7 +5,7 @@
 }
 
 
-$(document).ready(function () {
+function RenderStudentRegisterPage() {
     var Ctrl = new StudentRegisterController();
     Ctrl.PageInit();
     if (Ctrl.SessionCheck()) {
@@ -15,6 +15,6 @@ $(document).ready(function () {
         Ctrl.Logout();
         $("#PagePanel").load("/Views/Login.html");
     }
-});
+}
 
 

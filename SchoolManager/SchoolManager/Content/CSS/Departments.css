@@ -2,33 +2,76 @@
     float: left;
 }
 
-._txtText{
-    margin-left:1vw;
+._txtText {
+    float: left;
+    margin-left: 1vw;
     vertical-align: top;
 }
 
-#_btnAdd{
-    width:2vw;    
+#_btnAdd {
+    width: 2vw;
+    background: url('/Content/Image/Add.jpg');
+    height: 2vw;
+    background-size: 2vw;
+    float: left;
 }
-#_btnEdit{
-    margin-left:1vw;
-    width:2vw;
+._lstRow {
+    float: none;
+    padding-top: 5px;
+    clear: left;
+}
+
+#_lstDepartments {
+    float: left;
+    padding: 1vw;
+    margin: 2vw;
+    clear: left;
+}
+
+._btnRefresh {
+    margin-left: 1vw;
+    width: 2vw;
     margin-top: -2px;
+    background: url('/Content/Image/Refresh.jpg');
+    height:2vw;
+    background-size:2vw;
+    float:left;
+    
 }
 
-#_btnDelete{
-    margin-left:1vw;
-    height: 1.7vw;
+
+._btnDelete {
+    float: left;
+    width: 2vw;
+    background: url('/Content/Image/Delete.jpg');
+    height: 2vw;
+    background-size: 2vw;
 }
 
-#_btnOK{
-height:2vw;
-margin-left: 50vw;
+#_btnOK {
+    float: left;
+    width: 2vw;
+    background: url('/Content/Image/OK.jpg');
+    height: 2vw;
+    background-size: 2vw;
+    margin-left: 36vw;
+    clear: left;
 }
 
-._lblGroupHd{
+._lblGroupHd {
     font-weight: bold;
     float: left;
     width: 19vw;
     font-size: larger;
+    margin-left: 5vw;
+}
+
+.DepName {
+    float: left;
+    width: 20vw;
+}
+
+.DepCode {
+    float: left;
+    width: 10vw;
 }

@@ -1,4 +1,10 @@
-﻿$(document).ready(function () {
+﻿class NotificationsController extends ControllerBase {
+    RenderPage() {
+        $("#Content").html("Hello");
+    }
+}
+
+function RenderNotificationsPage() {
     var Ctrl = new NotificationsController();
     Ctrl.PageInit();
     if (Ctrl.SessionCheck()) {
@@ -8,11 +14,7 @@
         Ctrl.Logout();
         $("#PagePanel").load("/Views/Login.html");
     }
-});
-
-class NotificationsController extends ControllerBase {
-    RenderPage() {
-        $("#Content").html ("Hello");
-    }
 }
+
+
 

@@ -1,0 +1,3 @@
+﻿class HomeModel extends ModelBase {
+
+}

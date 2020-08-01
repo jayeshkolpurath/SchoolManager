@@ -1,33 +1,51 @@
-﻿class DepartmentsController extends ControllerBase {
-    RenderPage() {
-        var html = "<div><div class='_lblGroupHd'>Departments</div>";
-        
-        var Departments = DepartmentsModel.Get();
-       
+﻿'use strict';
+class DepartmentsController extends ControllerBase {
+    constructor() {
+        super();
+        this.DepList = null;
+        this.DepListOriginal = null;
+
+    }
+    FillControls() {
+        var DepModel = new DepartmentsModel();
+        this.DepList = DepModel.GetDepartments();
+        this.DepListOriginal = JSON.parse(JSON.stringify(this.DepList));
+        var html = "";
         var i = 1;
-        html += "<img id='_btnAdd' src='/Content/Image/Add.jpg' title='Add New'/><img id='_btnEdit' src='/Content/Image/Edit.jpg' title='Edit'/></div>";
-        html += "<div>";
-        Departments.forEach(element => {
-            html += "<div><div class='_lblInput'>" + i++ + "</div><input type='text' class='_txtText' value='" + element.Name + "'/>";
-            html += "<img id='_btnDelete' src='/Content/Image/Delete.jpg' title='Delete'/> </div>";
+        this.DepList.forEach(element => {
+            html += "<div class='_lstRow'><input type='text' class='_txtText DepCode'  id='_txtDepCode'" + i + "' value='" + element.Code + "'/><input type='text' class='_txtText DepName'  id='_txtTextName" + i + "' value='" + element.Name + "'/>";
+            html += "<div class='_btnDelete' id='_btnDelete" + i + "' title='Delete'/> <div class='_btnRefresh'  id='_btnRefresh" + i + "' title='Refresh'/></div><br>";
         });
-        html += "</div>"
-        html += "<div><img id='_btnOK' src='/Content/Image/OK.jpg' title='OK'/></div>";
-        $("#Content").html(html);
+        $("#_lstDepartments").html(html);
+        $("#_btnOK").click(function () {
+            var Model = new DepartmentsModel();
+            var Depts = [];
+            $("#_lstDepartments").children("._lstRow").each(function () {
+                var DeptCode = $(this).find(".DepCode").first().val();
+                var DeptName = $(this).find(".DepName").first().val();
+                var Dept = new DepartmentEntry(0,DeptCode,DeptName,"");
+                Depts.push(Dept);
+            });
+            Model.Update(Depts);
+        });
+    }
+
+    Save() {
+        this.Model.Update();
     }
 }
 
-$(document).ready(function () {
+function RenderDepartmentsPage() {
     var Ctrl = new DepartmentsController();
     Ctrl.PageInit();
     if (Ctrl.SessionCheck()) {
-        Ctrl.RenderPage();
+        Ctrl.FillControls();
     } else {
         $("#TitlePanel").css("display", "none");
         Ctrl.Logout();
         $("#PagePanel").load("/Views/Login.html");
     }
-});
+}
 
 
 

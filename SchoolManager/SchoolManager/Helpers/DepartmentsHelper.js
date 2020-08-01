@@ -1,16 +1,30 @@
-﻿class DepartmentsHelper extends HelperBase {
+﻿'use strict';
+class DepartmentsHelper extends HelperBase {
     constructor() {
         super();
+        this.Result = null;
     }
-    static GetDepartments() {
-        return [
-            { ID: "1", Name: "English" },
-            { ID: "2", Name: "Mathematics" },
-            { ID: "3", Name: "Chemistry" },
-            { ID: "4", Name: "Physics" },
-            { ID: "5", Name: "Biology" },
-            { ID: "6", Name: "Hindi" },
-            { ID: "7", Name: "Sports" }
-        ]
+    GetDepartments() {
+       $.ajax({
+            type: "GET",
+            url: "https://localhost:44343/weatherforecast",
+            contentType:"application/json;",
+            dataType: "json",
+            timeout:3000,
+            success: function (data) {
+                this.Result = data;
+            },
+            error: function (jqXHR, status, err) {
+                this.Result = "Error";
+            }
+       });
+
+        return this.Result;
+    }
+
+    Update(Depts) {
+        var s = "";
+        Depts.forEach(element => { s += element.Name; });
+        alert("Updating ... " + s);
     }
 }

@@ -1,5 +1,9 @@
 ﻿//Controller Class
+'use strict';
 class LayoutController extends ControllerBase {
+    constructor() {
+        super();
+    }
     HandleMenuClicks() {
         //Top Panel Menu Clicks
         MenuItems = this._FetchTopMenuItems();
@@ -8,10 +12,7 @@ class LayoutController extends ControllerBase {
             Nm.on("click", { MenuItem: MenuItems[i] }, MenuClick);
             $("#TopMenuPanel").append(Nm);
         }
-        $("#lnkSignOut").click(function () {
-            //ParentClass.prototype.Logout.call(this); //calling base class method
-            window.location = "/Views/Login.html";
-        });
+        
     }
 
     _FetchTopMenuItems() {
@@ -44,15 +45,15 @@ class LayoutController extends ControllerBase {
         }
         return SideMenu;
     }
-    _FetchThemes(){
-        var ThemeList =  [{Name:"Classic"},{Name:"Dark"},{Name:"Modern"}];
+    _FetchThemes() {
+        var ThemeList = [{ Name: "Classic" }, { Name: "Dark" }, { Name: "Modern" }];
         return ThemeList;
     }
 }
 
 
 //Page Events
-var LoadedControllers = [];
+var LoadedScripts = [];
 var Ctrl;
 $(document).ready(function () {
     Ctrl = new LayoutController();
@@ -60,36 +61,40 @@ $(document).ready(function () {
     Ctrl.HandleMenuClicks();
     LoadTheme(Ctrl);
     if (Ctrl.SessionCheck()) {
-        var UserName = sessionStorage.getItem("SASessionID");
+        var UserName = sessionStorage.getItem("SASessionID").split("|")[0];
         $("#UserName").html(UserName);
-        LoadContentPage("PagePanel", "/Views/Home.html", "/Controllers/HomeController.js");
+        setTimeout("LoadContentPage('PagePanel', '/Views/Home.html', 'Home')",10);
     } else {
         $("#TitlePanel").css("display", "none");
         Ctrl.Logout();
         window.location = "/Views/Login.html";
     }
 
-    $("#btnTheme").click(function(){
+    $("#btnTheme").click(function () {
         var Themes = Ctrl._FetchThemes();
-        var html= "<div id='lst_ThemeOptions'><div>Select Theme</div><ul>";
+        var html = "<div id='lst_ThemeOptions'><div>Select Theme</div><ul>";
         Themes.forEach(element => {
-            html += "<li onclick='ThemeSelect(\"" + element.Name + "\")'>"+ element.Name +"</li>";            
+            html += "<li onclick='ThemeSelect(\"" + element.Name + "\")'>" + element.Name + "</li>";
         });
         html += "</ul></div>";
         $("#PopupBox").html(html);
         $("#PopupBox").show();
     });
+
+    $("#lnkSignOut").click(function () {
+        Ctrl.Logout(); 
+        window.location = "/Views/Login.html";
+    });
     //Menu Click Handling
 });
 
-function ThemeSelect(ThemeName){
+function ThemeSelect(ThemeName) {
     Ctrl.SetTheme(ThemeName);
     $("#PopupBox").hide();
     window.location = "/Views/Layout.html";
 }
 var MenuItems;
 function MenuClick(e) {
-    /*   $("#PagePanel").load(e.data.MenuItem.MenuLink);*/
     $("#LeftPanel").empty();
     $("#LeftPanel").hide();
     var SubMenuList = Ctrl._FetchLeftMenuItems(e.data.MenuItem.MenuName);
@@ -103,30 +108,43 @@ function MenuClick(e) {
 
 function SubMenuClick(e) {
     var MenuItem = e.data.MenuItem;
-    LoadContentPage("PagePanel", MenuItem.MenuLink, "/Controllers/" + MenuItem.MenuName + "Controller.js");
+    LoadContentPage("PagePanel", MenuItem.MenuLink, MenuItem.MenuName);
 }
 
 function LoadTheme(Ctrl) {
-    var ThemeName=Ctrl.GetTheme();
-    var ThemeUTL = "/Content/CSS/Themes/" +  ThemeName  + ".css";
+    var ThemeName = Ctrl.GetTheme();
+    var ThemeUTL = "/Content/CSS/Themes/" + ThemeName + ".css";
     var cssFile = document.createElement("link");
-    cssFile.rel="stylesheet";
+    cssFile.rel = "stylesheet";
     cssFile.Type = "text/css";
     cssFile.href = ThemeUTL;
-    document.body.appendChild(cssFile);
+    document.head.appendChild(cssFile);
 }
 
-function LoadContentPage(Location, ContentHTMLPageURL, ControllerURL) {
+function LoadContentPage(Location, ContentHTMLPageURL, ControllerName) {
     $("#" + Location).load(ContentHTMLPageURL);
-    if (LoadedControllers.indexOf(ControllerURL) === -1) {
-        LoadedControllers.push(ControllerURL);
-        var Contrl = document.createElement("script");
-        Contrl.Type = "application/javascript";
-        Contrl.src = ControllerURL;
-        document.body.appendChild(Contrl);
+    LoadScripts(ControllerName);
+    LoadCSS(ControllerName);
+    var fn = "Render" + ControllerName + "Page()";
+    setTimeout(fn, 10);
+}
+
+function LoadScripts(ControllerName) {
+    var ScriptURLs = [{ Name: "Helper" }, { Name: "Model" }, { Name: "Controller" }];
+    ScriptURLs.forEach(element => {
+        var URL = "../" + element.Name + "s/" + ControllerName + element.Name + ".js";
+        if (!$("script[src='" + URL + "']").length) {
+            $('<script src="' + URL + '" type="text/javascript"></script>').appendTo("head");
+        }
+    });
+}
+
+function LoadCSS(ControllerName) {
+    var URL = "/Content/CSS/" + ControllerName + ".css";
+    if (!$("link[href='" + URL + "']").length) {
+        $('<link href="' + URL + '" rel="stylesheet">').appendTo("head");
     }
 }
-
 
 
 

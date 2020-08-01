@@ -1,6 +1,10 @@
-﻿class ControllerBase {
+﻿'use strict';
+class ControllerBase {
+    constructor() {
+        
+    }
     Logout() {
-        this._ResetSession();
+        SessionHelper.Reset();
     }
 
     PageInit() {
@@ -8,8 +12,8 @@
     }
 
     SessionCheck() {
-        if (sessionStorage.getItem("SASessionID")) {
-            var SessionID = sessionStorage.getItem("SASessionID");
+        if (SessionHelper.Get("SASessionID")) {
+            var SessionID = SessionHelper.Get("SASessionID");
             return true;
         } else {
             return false;
@@ -18,8 +22,8 @@
 
     GetTheme() {
         var ThemeName;
-        if (sessionStorage.getItem("Theme")) {
-            ThemeName = sessionStorage.getItem("Theme");
+        if (SessionHelper.Get("Theme")) {
+            ThemeName = SessionHelper.Get("Theme");
         } else {
             ThemeName = "Classic";
         }
@@ -27,13 +31,13 @@
     }
 
     SetTheme(ThemeName) {
-        sessionStorage.setItem("Theme", ThemeName);
+        SessionHelper.Set("Theme", ThemeName);
     }
 
     //Private Members    
     _ResetSession() {
-        sessionStorage.setItem("SASessionID", "");
-        sessionStorage.removeItem("SASessionID");
+        SessionHelper.Set("SASessionID", "");
+        SessionHelper.Delete("SASessionID");
     }
 }
 

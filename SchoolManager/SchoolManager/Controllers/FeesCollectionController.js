@@ -1,4 +1,9 @@
-﻿$(document).ready(function () {
+﻿class FeesCollectionController extends ControllerBase {
+    RenderPage() {
+        $("#Content").html("Hello");
+    }
+}
+function RenderFeesCollectionPage() {
     var Ctrl = new FeesCollectionController();
     Ctrl.PageInit();
     if (Ctrl.SessionCheck()) {
@@ -8,11 +13,7 @@
         Ctrl.Logout();
         $("#PagePanel").load("/Views/Login.html");
     }
-});
-  
-class FeesCollectionController extends ControllerBase {
-    RenderPage() {
-        $("#Content").html ("Hello");
-    }
 }
+  
+
 

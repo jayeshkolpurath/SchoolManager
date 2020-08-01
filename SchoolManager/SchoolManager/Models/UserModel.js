@@ -6,15 +6,13 @@
         this.Password = Password;
     }
 
-    static FetchUserWithCredentials(UserName, Password) {
+    Login(UserName, Password) {
         /*
     Check if User exists in database with the given username and password
-    if yes return true and return false otherwise.
+    if yes return the user object; otherwise return null.
     */
-        var objUserModel = null;
-        if (UserName == "test" && Password == "test") {
-            objUserModel = new UserModel(UserName, Password); //dummy code
-        }
+        var objLoginHelper = new LoginHelper();
+        var objUserModel = objLoginHelper.FetchUserWithCredentials(UserName, Password);
         return objUserModel; //return dummy value - to be replaced with actual code
     }
 }

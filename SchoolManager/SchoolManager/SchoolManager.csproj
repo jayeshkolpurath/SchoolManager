@@ -126,6 +126,7 @@
     <Content Include="Content\Image\Delete.jpg" />
     <Content Include="Content\Image\Edit.jpg" />
     <Content Include="Content\Image\OK.jpg" />
+    <Content Include="Content\Image\Refresh.jpg" />
     <Content Include="Content\Image\SignOut.jpg" />
     <Content Include="Content\Image\Theme.jpg" />
     <Content Include="Content\Image\User.jpg" />
@@ -153,11 +154,13 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Helpers\HomeHelper.js" />
     <Content Include="Helpers\DepartmentsHelper.js" />
     <Content Include="Helpers\GeneralHelper.js" />
     <Content Include="Helpers\HelperBase.js" />
     <Content Include="Helpers\LoginHelper.js" />
     <Content Include="Helpers\SessionHelper.js" />
+    <Content Include="Models\HomeModel.js" />
     <Content Include="Models\DepartmentsModel.js" />
     <Content Include="Models\ModelBase.js" />
     <Content Include="Models\UserModel.js" />

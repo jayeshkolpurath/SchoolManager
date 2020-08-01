@@ -1,9 +1,10 @@
-﻿class DepartmentsModel extends ModelBase {
-    constructor(Departments) {
+﻿'use strict';
+class DepartmentsModel extends ModelBase {
+    constructor() {
         super();
-        this.Departments = Departments;
     }
-    Update() {
+
+    Update(Departments) {
         Departments.forEach(element => {
             switch (element.Action) {
                 case "A":
@@ -14,20 +15,27 @@
                     break;
             }
         });
+        var objDeptsHelper = new DepartmentsHelper();
+        objDeptsHelper.Update(Departments);
     }
-    static Get() {
-        var Dept = DepartmentsHelper.GetDepartments();
-        var Departments = [];
-        Dept.forEach(element => {
-            Departments.push(new DepartmentEntry(element.ID, element.Name, ""));
-        });
-        return Departments;
+
+    GetDepartments() {
+        var objDeptsHelper = new DepartmentsHelper();
+        var Dept = objDeptsHelper.GetDepartments();
+        var Depts = [];
+        if (Dept !== undefined) {
+            Dept.forEach(element => {
+                Depts.push(new DepartmentEntry(element.ID, element.Code, element.Name, ""));
+            });
+        }
+        return Depts;
     }
 }
 
 class DepartmentEntry {
-    constructor(ID, Name, Action) {
+    constructor(ID,Code, Name, Action) {
         this.ID = ID;
+        this.Code = Code;
         this.Name = Name;
         this.Action = Action;
     }

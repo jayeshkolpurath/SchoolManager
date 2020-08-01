@@ -141,6 +141,8 @@ F:\GitHub\SchoolManager\SchoolManager\SchoolManager\bin\Newtonsoft.Json.xml
 F:\GitHub\SchoolManager\SchoolManager\SchoolManager\bin\Antlr3.Runtime.pdb
 F:\GitHub\SchoolManager\SchoolManager\SchoolManager\bin\Microsoft.AspNet.FriendlyUrls.xml
 F:\GitHub\SchoolManager\SchoolManager\SchoolManager\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-F:\GitHub\SchoolManager\SchoolManager\SchoolManager\obj\Debug\SchoolManager.csprojResolveAssemblyReference.cache
 F:\GitHub\SchoolManager\SchoolManager\SchoolManager\obj\Debug\SchoolManager.dll
 F:\GitHub\SchoolManager\SchoolManager\SchoolManager\obj\Debug\SchoolManager.pdb
+F:\GitHub\SchoolManager\SchoolManager\SchoolManager\obj\Debug\SchoolManager.csprojAssemblyReference.cache
+F:\GitHub\SchoolManager\SchoolManager\SchoolManager\obj\Debug\SchoolManager.csproj.CoreCompileInputs.cache
+F:\GitHub\SchoolManager\SchoolManager\SchoolManager\obj\Debug\SchoolManager.csproj.CopyComplete
