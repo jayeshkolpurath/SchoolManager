@@ -1,7 +1,16 @@
 ﻿'use strict';
 class ControllerBase {
     constructor() {
-        
+        var stng = SessionHelper.Get("SASettings");
+        if (!stng) {
+            $.getJSON("/params.json", function (s) {
+                SessionHelper.Set("SASettings", JSON.stringify(s.Settings));
+                this.Settings = s.Settings;
+            });
+        } else {
+            this.Settings = JSON.parse(stng);
+        }
+
     }
     Logout() {
         SessionHelper.Reset();

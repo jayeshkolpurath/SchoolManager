@@ -1,4 +1,4 @@
-﻿class SessionHelper extends HelperBase {
+﻿class SessionHelper {
     static Reset() {
         sessionStorage.clear();
     }

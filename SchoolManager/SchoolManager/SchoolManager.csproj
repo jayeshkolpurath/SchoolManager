@@ -164,6 +164,7 @@
     <Content Include="Models\DepartmentsModel.js" />
     <Content Include="Models\ModelBase.js" />
     <Content Include="Models\UserModel.js" />
+    <None Include="Params.json" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

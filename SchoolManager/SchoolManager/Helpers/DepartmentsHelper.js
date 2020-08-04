@@ -5,21 +5,28 @@ class DepartmentsHelper extends HelperBase {
         this.Result = null;
     }
     GetDepartments() {
-       $.ajax({
+        var RequestData = CreateGetRequest();
+        $.ajax({
             type: "GET",
-            url: "https://localhost:44343/weatherforecast",
-            contentType:"application/json;",
+            url: "http://localhost:44376/admin/ManageDepartment",
+            contentType: "application/json;",
             dataType: "json",
-            timeout:3000,
+            timeout: 3000,
+            data: RequestData,
             success: function (data) {
-                this.Result = data;
+                this.Result = Data;
             },
             error: function (jqXHR, status, err) {
                 this.Result = "Error";
             }
-       });
+        });
 
         return this.Result;
+    }
+
+    CreateGetRequest() {
+        var Req = { Name: "", Code: "", action: "S", status: "" };
+        return Req;
     }
 
     Update(Depts) {
