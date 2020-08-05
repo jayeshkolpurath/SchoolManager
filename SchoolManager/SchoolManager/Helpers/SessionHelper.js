@@ -1,7 +1,6 @@
 ﻿class SessionHelper {
-    static Reset() {
-        sessionStorage.clear();
-    }
+
+   
     static Set(Name, Value) {
         sessionStorage.setItem(Name, Value);
     }

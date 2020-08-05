@@ -13,7 +13,9 @@ class ControllerBase {
 
     }
     Logout() {
-        SessionHelper.Reset();
+        SessionHelper.Delete("SACurrentUserName");
+        SessionHelper.Delete("SALoginTime");
+        SessionHelper.Delete("SAAPISessionKey");
     }
 
     PageInit() {
@@ -21,8 +23,8 @@ class ControllerBase {
     }
 
     SessionCheck() {
-        if (SessionHelper.Get("SASessionID")) {
-            var SessionID = SessionHelper.Get("SASessionID");
+        var SessionID = SessionHelper.Get("SAAPISessionKey");
+        if (SessionID) {
             return true;
         } else {
             return false;

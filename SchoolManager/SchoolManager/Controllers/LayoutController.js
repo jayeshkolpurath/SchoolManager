@@ -61,7 +61,7 @@ $(document).ready(function () {
     Ctrl.HandleMenuClicks();
     LoadTheme(Ctrl);
     if (Ctrl.SessionCheck()) {
-        var UserName = sessionStorage.getItem("SAAPISessionKey");
+        var UserName = sessionStorage.getItem("SACurrentUserName");
         $("#UserName").html(UserName);
         setTimeout("LoadContentPage('PagePanel', '/Views/Home.html', 'Home')",10);
     } else {

@@ -1,8 +1,7 @@
 ﻿class UserModel extends ModelBase {
-
+    SessionKey = null;
     constructor(ProjSettings) {
         super(ProjSettings);
-        this.SessionKey = null;
     }
     UserLogin(UserName, Password) {
         var objLoginHelper = new LoginHelper(this.Settings);

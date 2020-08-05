@@ -1,34 +1,42 @@
 ﻿'use strict';
 class DepartmentsHelper extends HelperBase {
-    constructor() {
-        super();
-        this.Result = null;
+    #Result = null;
+    constructor(Settings) {
+        super(Settings);
     }
     GetDepartments() {
-        var RequestData = CreateGetRequest();
-        var APIKey = SessionHelper.Get("SAAPISessionKey");
+        var RequestData = JSON.stringify(this.CreateGetRequest());
+        var APIURL = this.Settings.APIURL + "/admin/ManageDepartment";
+        var AuthHeaderValue = "Bearer " + SessionHelper.Get("SAAPISessionKey");
+        var ContentLength = RequestData.length;
         $.ajax({
-            type: "GET",
-            url: "http://localhost:44376/admin/ManageDepartment",
+            type: "POST",
+            url: APIURL,
             contentType: "application/json;",
-            headers: { "Authorization": "Bearer " + APIKey},
-            async: false,
+            headers: { "Authorization": AuthHeaderValue, "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Credentials": "true", "Access-Control-Allow-Headers": ContentLength, "Access-Control-Expose-Headers": ContentLength },
+            Connection: "keep-alive",
             dataType: "json",
+            async: false,
             timeout: 3000,
             data: RequestData,
             success: function (data) {
-                this.Result = Data;
+                this.#Result = data;
             },
             error: function (jqXHR, status, err) {
-                this.Result = "Error";
+                this.#Result = "Error";
             }
         });
-
-        return this.Result;
+        return this.#Result;
     }
 
     CreateGetRequest() {
-        var Req = { Name: "", Code: "", action: "S", status: "" };
+        var Req = {
+            "Departments": [
+                {
+                    "Action": "S"
+                }
+            ]
+        };
         return Req;
     }
 

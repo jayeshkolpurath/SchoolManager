@@ -1,13 +1,12 @@
 ﻿'use strict';
 class DepartmentsController extends ControllerBase {
+    DepList = null;
+    DepListOriginal = null;
     constructor() {
         super();
-        this.DepList = null;
-        this.DepListOriginal = null;
-
     }
     FillControls() {
-        var DepModel = new DepartmentsModel();
+        var DepModel = new DepartmentsModel(this.Settings);
         this.DepList = DepModel.GetDepartments();
         this.DepListOriginal = JSON.parse(JSON.stringify(this.DepList));
         var html = "";
@@ -18,12 +17,12 @@ class DepartmentsController extends ControllerBase {
         });
         $("#_lstDepartments").html(html);
         $("#_btnOK").click(function () {
-            var Model = new DepartmentsModel();
+            var Model = new DepartmentsModel(this.Settings);
             var Depts = [];
             $("#_lstDepartments").children("._lstRow").each(function () {
                 var DeptCode = $(this).find(".DepCode").first().val();
                 var DeptName = $(this).find(".DepName").first().val();
-                var Dept = new DepartmentEntry(0,DeptCode,DeptName,"");
+                var Dept = new DepartmentEntry(0, DeptCode, DeptName, "");
                 Depts.push(Dept);
             });
             Model.Update(Depts);
