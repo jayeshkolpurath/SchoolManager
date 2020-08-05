@@ -6,10 +6,13 @@ class DepartmentsHelper extends HelperBase {
     }
     GetDepartments() {
         var RequestData = CreateGetRequest();
+        var APIKey = SessionHelper.Get("SAAPISessionKey");
         $.ajax({
             type: "GET",
             url: "http://localhost:44376/admin/ManageDepartment",
             contentType: "application/json;",
+            headers: { "Authorization": "Bearer " + APIKey},
+            async: false,
             dataType: "json",
             timeout: 3000,
             data: RequestData,

@@ -7,8 +7,9 @@
     UserLogin(UserName, Password) {
         var objLoginHelper = new LoginHelper(this.Settings);
         var RetVal = objLoginHelper.Login(UserName, Password);
-        if (objLoginHelper.SessionData != null) {
-            this.SessionKey = objLoginHelper.SessionData.signature;
+        var key=SessionHelper.Get("SAAPISessionKey");
+        if ( key!= null) {
+            this.SessionKey = key;
             RetVal = true;
         }
     }

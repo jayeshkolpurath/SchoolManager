@@ -1,12 +1,12 @@
 ﻿class LoginHelper extends HelperBase {
+    SessionData = null;
     constructor(ProjSettings) {
         super(ProjSettings);
-        this.SessionData = null;
     }
     CreateGetRequest(UID, Pwd) {
         var st = { name: UID, password: Pwd };
         return st;
-    }   
+    }
 
     DoRemoteLogin(UserName, Password) {
         var RequestData = this.CreateGetRequest(UserName, Password);
@@ -18,7 +18,7 @@
             type: "POST",
             url: LoginURL,
             contentType: "application/json;charset=utf-8",
-            headers: { "Accept-Encoding":"gzip, deflate, sdch, br", "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Credentials": "true", "Access-Control-Allow-Headers": ContentLength, "Access-Control-Expose-Headers": ContentLength},
+            headers: { "Accept-Encoding": "gzip, deflate, sdch, br", "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Credentials": "true", "Access-Control-Allow-Headers": ContentLength, "Access-Control-Expose-Headers": ContentLength },
             Connection: "keep-alive",
             dataType: "json",
             async: false,
@@ -27,8 +27,13 @@
             success: function (data) {
                 if (data.code == "200") {
                     this.SessionData = data;  // Success
+                    var d = new Date();
+                    SessionHelper.Set("SACurrentUserName", UserName);
+                    SessionHelper.Set("SALoginTime", d.getTime());
+                    SessionHelper.Set("SAAPISessionKey", data.signature);
                 } else {
                     this.SessionData = "Error";
+                    SessionHelper.Delete("SAAPISessionKey");
                 }
             },
             error: function (jqXHR, status, err) {
@@ -38,6 +43,10 @@
     }
 
     Login(UserName, Password) {
-        this.DoRemoteLogin(UserName, Password);
+        (async () => {
+            await this.DoRemoteLogin(UserName, Password);
+        })();
     }
+
+
 }

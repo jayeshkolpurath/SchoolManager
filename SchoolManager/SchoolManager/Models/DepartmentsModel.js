@@ -5,16 +5,6 @@ class DepartmentsModel extends ModelBase {
     }
 
     Update(Departments) {
-        Departments.forEach(element => {
-            switch (element.Action) {
-                case "A":
-                    break;
-                case "E":
-                    break;
-                case "D":
-                    break;
-            }
-        });
         var objDeptsHelper = new DepartmentsHelper();
         objDeptsHelper.Update(Departments);
     }

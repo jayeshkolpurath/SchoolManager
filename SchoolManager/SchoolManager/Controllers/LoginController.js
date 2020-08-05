@@ -5,19 +5,8 @@ class LoginController extends ControllerBase {
         var objUserModel = new UserModel(this.Settings);
         objUserModel.UserLogin(UserName, Password);
         var LoginStatus = objUserModel.SessionKey;
-        var Result = false;
-        if (LoginStatus) {
-            var d = new Date();
-            SessionHelper.Set("SACurrentUserName", UserName );
-            SessionHelper.Set("SALoginTime", d.getTime());
-            SessionHelper.Set("SAAPISessionKey", objUserModel.SessionKey);
-
-            Result = true;
-        } else {
-            SessionHelper.Delete("SAAPISessionKey");
-            Result = false;
-        }
-        return Result;
+        
+        return LoginStatus;
     }
 }
 
