@@ -1,5 +1,6 @@
 ﻿'use strict';
 class DepartmentsModel extends ModelBase {
+    Departments = [];
     constructor(Settings) {
         super(Settings);
     }
@@ -12,13 +13,7 @@ class DepartmentsModel extends ModelBase {
     GetDepartments() {
         var objDeptsHelper = new DepartmentsHelper(this.Settings);
         var Dept = objDeptsHelper.GetDepartments();
-        var Depts = [];
-        if (Dept !== null) {
-            Dept.forEach(element => {
-                Depts.push(new DepartmentEntry(element.ID, element.Code, element.Name, ""));
-            });
-        }
-        return Depts;
+        return Dept;
     }
 }
 
