@@ -8,9 +8,10 @@ class DepartmentsController extends ControllerBase {
 
     RenderPage() {
         try {
-            this.#BindEventHandlers();
             this.#FetchModel();
+            this.#SaveModelCopy(this.Model);
             this.#PopulatePageControls();
+            this.#BindEventHandlers();
         }
         catch (Error) {
             new LogHelper(this.Settings).LogError(constructor.name, Error);
@@ -20,7 +21,15 @@ class DepartmentsController extends ControllerBase {
     #FetchModel() {
         try {
             this.Model.GetDepartments();
-            this.ModelCopy = JSON.parse(JSON.stringify(this.Model.Departments));
+        }
+        catch (Error) {
+            new LogHelper(this.Settings).LogError(constructor.name, Error);
+        }
+    }
+
+    #SaveModelCopy(Data) {
+        try {
+            this.Helper.SaveModelCopy(Data);
         }
         catch (Error) {
             new LogHelper(this.Settings).LogError(constructor.name, Error);
@@ -34,24 +43,41 @@ class DepartmentsController extends ControllerBase {
 
         $("#_btnAdd").click(function () {
             var i = $("[id^=_lstRow]").length + 1;
-            var html = "<div class='_lstRow' id='_lstRow#" + i + "'>";
-            html += "<input type='text' class='_txtText DepCode' id='_txtDepCode#" + i + "' value=''/>";
-            html += "<input type='text' class='_txtText DepName' id='_txtTextName#" + i + "' value='' />";
-            html += "<div class='_btnDelete' id='_btnDelete#" + i + "' title='Delete'/> <div class='_btnRefresh'  id='_btnRefresh#" + i + "' title='Refresh'/></div>";
+            var html = "<div class='_lstRow' id='_lstRow_" + i + "'>";
+            html += "<input type='text' class='_txtText DepCode' id='_txtDepCode_" + i + "' value=''/>";
+            html += "<input type='text' class='_txtText DepName' id='_txtTextName_" + i + "' value='' />";
+            html += "<div class='_btnDelete' id='_btnDelete_" + i + "' title='Delete'/>";
+            html += "<div class='_btnRefresh' id='_btnRefresh_" + i + "' title='Refresh' />";
+            html += "<input type='hidden' value='' id='hdnAction_" + i + "' value='A'/>";
+            html += "</div >";
             $("#_lstDepartments").append(html);
         });
 
         $(document).on('click', '[id^=_btnDelete]', function () {
-            var id = this.id.split("#")[1];
-            alert("Delete " + id);
+            var id = this.id.split("_").slice(-1)[0];
+            $("#_lstRow_" + id + " > input ").addClass("Deleted"); 
+            $("#hdnAction_" + id).val("D");
         });
 
         $(document).on('click', '[id^=_btnRefresh]', function () {
-            var id = this.id.split("#")[1];
-            alert("Reload " + id);
+            try {
+                var id = this.id.split("_").slice(-1)[0];
+                $("#_lstRow_" + id + " > input ").removeClass("Deleted"); 
+                var ModelCopy = new DepartmentsHelper(this.Settings).GetModelCopy();
+                if (id <= ModelCopy.Departments.length) {
+                    $("#_txtDepCode_" + id).val(ModelCopy.Departments[id - 1].Code);
+                    $("#_txtTextName_" + id).val(ModelCopy.Departments[id - 1].Name);
+                    $("#hdnAction_" + id).val(ModelCopy.Departments[id - 1].Action);
+                } else {
+                    $("#hdnAction_" + id).val("");
+                }
+            }
+            catch (Error) {
+                new LogHelper(this.Settings).LogError(constructor.name, Error);
+            }
         });
     }
-    
+
     #PopulatePageControls() {
         try {
             var html = "";
@@ -59,8 +85,12 @@ class DepartmentsController extends ControllerBase {
             var i = 1;
             if (this.Model.Departments != null) {
                 this.Model.Departments.forEach(element => {
-                    html += "<div class='_lstRow' id='_lstRow#" + i + "'><input type='text' class='_txtText DepCode'  id='_txtDepCode#" + i + "' value='" + element.Code + "'/><input type='text' class='_txtText DepName'  id='_txtTextName#" + i + "' value='" + element.Name + "'/>";
-                    html += "<div class='_btnDelete' id='_btnDelete#" + i + "' title='Delete'/> <div class='_btnRefresh'  id='_btnRefresh#" + i + "' title='Refresh'/></div><br>";
+                    html += "<div class='_lstRow' id='_lstRow_" + i + "'><input type='text' class='_txtText DepCode'  id='_txtDepCode_" + i + "' value='" + element.Code + "'/>";
+                    html += "<input type='text' class='_txtText DepName' id='_txtTextName_" + i + "' value='" + element.Name + "' />";
+                    html += "<div class='_btnDelete' id='_btnDelete_" + i + "' title='Delete'/>";
+                    html += "<div class='_btnRefresh' id='_btnRefresh_" + i + "' title='Refresh' />";
+                    html += "<input type='hidden' value='' id='hdnAction_" + i + "' value='" + element.Action + "'/>";
+                    html += "</div>";
                     i++;
                 });
             } else {

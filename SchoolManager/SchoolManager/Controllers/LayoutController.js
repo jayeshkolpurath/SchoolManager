@@ -49,6 +49,20 @@ class LayoutController extends ControllerBase {
         var ThemeList = [{ Name: "Classic" }, { Name: "Dark" }, { Name: "Modern" }];
         return ThemeList;
     }
+
+    GetTheme() {
+        var ThemeName;
+        if (SessionHelper.Get("Theme")) {
+            ThemeName = SessionHelper.Get("Theme");
+        } else {
+            ThemeName = "Classic";
+        }
+        return ThemeName;
+    }
+
+    SetTheme(ThemeName) {
+        SessionHelper.Set("Theme", ThemeName);
+    }
 }
 
 

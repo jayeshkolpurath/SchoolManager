@@ -4,6 +4,7 @@ class DepartmentsModel extends ModelBase {
     constructor(Settings) {
         super(Settings);
     }
+
     GetDepartments() {
         var Req = JSON.stringify(this.CreateGetRequest());
         this.#DoRemoteDepartmentsFetch(Req);
