@@ -158,12 +158,13 @@
     <Content Include="Helpers\DepartmentsHelper.js" />
     <Content Include="Helpers\GeneralHelper.js" />
     <Content Include="Helpers\HelperBase.js" />
+    <Content Include="Helpers\LogHelper.js" />
     <Content Include="Helpers\LoginHelper.js" />
     <Content Include="Helpers\SessionHelper.js" />
     <Content Include="Models\HomeModel.js" />
     <Content Include="Models\DepartmentsModel.js" />
     <Content Include="Models\ModelBase.js" />
-    <Content Include="Models\UserModel.js" />
+    <Content Include="Models\LoginModel.js" />
     <None Include="Params.json" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

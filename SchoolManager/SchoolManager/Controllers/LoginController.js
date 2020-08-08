@@ -1,12 +1,32 @@
 ﻿//Controller Class
 
 class LoginController extends ControllerBase {
+    constructor() {
+        super();
+        this.Model = new LoginModel(this.Settings);
+        this.Helper = new LoginHelper(this.Settings);
+    }
+    PopulatePageControls() {
+
+    }
+
     Login(UserName, Password) {
-        var objUserModel = new UserModel(this.Settings);
-        objUserModel.UserLogin(UserName, Password);
-        var LoginStatus = objUserModel.SessionKey;
-        
-        return LoginStatus;
+        try {
+            var LoginResult = this.Model.UserLogin(UserName, Password);
+            if (LoginResult) {
+                this.Helper.SaveUserSession(UserName, this.Model.SessionKey)
+
+                $("#TitlePanel").css("display", "none");
+                window.location = "/Views/Layout.html";
+            } else {
+                this.Helper.RemoveUserSession();
+                $("#lbl_ErrorMsg").html("Invalid User Name or Password!");
+            }
+        }
+        catch (Error) {
+            $("#lbl_ErrorMsg").html("Error!" + Error);
+            new LogHelper(this.Settings).LogError(constructor.name, Error);
+        }
     }
 }
 
@@ -14,14 +34,11 @@ class LoginController extends ControllerBase {
 //Page Events
 $(document).ready(function () {
     var Controller = new LoginController();
+
+    Controller.PopulatePageControls();
+
     $("#LoginButton").click(function () {
-        var LoginResult = Controller.Login($("#txt_UserName").val(), $("#txt_Password").val());
-        if (LoginResult) {
-            $("#TitlePanel").css("display", "none");
-            window.location = "/Views/Layout.html";
-        } else {
-            $("#lbl_ErrorMsg").html("Invalid User Name or Password!");
-        }
+        Controller.Login($("#txt_UserName").val(), $("#txt_Password").val());
     });
 
     $("#lnkSignOut").click(function () {

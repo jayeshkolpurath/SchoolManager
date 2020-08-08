@@ -1,5 +1,6 @@
 ﻿{
-    "Settings": {
-"APIURL":"http://localhost:44376"
-}
+  "Settings": {
+    "APIURL": "http://localhost:44376",
+    "APITimeOut": 100
+  }
 }
