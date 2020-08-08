@@ -30,20 +30,7 @@ class ControllerBase {
             return false;
         }
     }
-
-    GetTheme() {
-        var ThemeName;
-        if (SessionHelper.Get("Theme")) {
-            ThemeName = SessionHelper.Get("Theme");
-        } else {
-            ThemeName = "Classic";
-        }
-        return ThemeName;
-    }
-
-    SetTheme(ThemeName) {
-        SessionHelper.Set("Theme", ThemeName);
-    }
+ 
 
     //Private Members    
     _ResetSession() {

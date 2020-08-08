@@ -1,5 +1,4 @@
 ﻿class LoginHelper extends HelperBase {
-    SessionData = null;
     constructor(ProjSettings) {
         super(ProjSettings);
     }
