@@ -8,6 +8,7 @@
     vertical-align: top;
 }
 
+
 #_btnAdd {
     width: 1.5vw;
     background: url('/Content/Image/Add.jpg');
@@ -15,30 +16,41 @@
     background-size: 1.5vw;
     float: left;
 }
+
+
 ._lstRow {
     float: none;
     padding-top: 5px;
     clear: left;
 }
+
 ._lstHead {
     float: none;
     padding-top: 5px;
     clear: left;
-    font-weight:bold;
+    font-weight: bold;
 }
+
 .ColHdCode {
     margin-left: 1vw;
 }
+
 .ColHdName {
     margin-left: 2vw;
 }
+
 #_lstDepartments {
     float: left;
     padding: 1vw;
     margin: 2vw;
     clear: left;
 }
-
+.RowAction{
+    float:left;
+}
+.RowID {
+    float: left;
+}
 ._btnRefresh {
     margin-left: 1vw;
     width: 1.5vw;
@@ -53,6 +65,15 @@
     float: left;
     width: 1.5vw;
     background: url('/Content/Image/Delete.jpg');
+    height: 1.5vw;
+    margin-left: 1vw;
+    background-size: 1.5vw;
+}
+
+._btnEdit {
+    float: left;
+    width: 1.5vw;
+    background: url('/Content/Image/Edit.jpg');
     height: 1.5vw;
     margin-left: 1vw;
     background-size: 1.5vw;
