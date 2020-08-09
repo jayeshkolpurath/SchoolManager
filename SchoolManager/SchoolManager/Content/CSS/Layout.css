@@ -5,85 +5,117 @@
     height: 100%;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-a{
+
+a {
     text-decoration: none;
 }
 
-a:link{
+    a:link {
+    }
+
+.FlagsCol {
+    margin-left: 1vw;
+    width: 1.5vw;
+    height: 1.5vw;
+    float: left;
 }
 
-.Deleted {
-    text-decoration:line-through;
+.NoIcon {
+    margin-left: 1vw;
+    width: 1.5vw;
+    background: none;
+    height: 1.5vw;
+    background-size: 1.5vw;
+    float: left;
 }
 
-#TitlePanel{
+.DeletedIcon {
+    margin-left: 1vw;
+    width: 1.5vw;
+    background: url(/Content/Image/Deleted.jpg);
+    height: 1.5vw;
+    background-size: 1.5vw;
+    float: left;
+}
+.EditedIcon {
+    margin-left: 1vw;
+    width: 1.5vw;
+    background: url(/Content/Image/Edited.jpg);
+    height: 1.5vw;
+    background-size: 1.5vw;
+    float: left;
+}
+#TitlePanel {
     float: none;
     width: 100%;
 }
 
-.TitleItem{
+.TitleItem {
     margin: 5px;
     float: left;
 }
 
-#TitleText{
-  float: left;
-}
-#btnTheme{
-    width: 2vw;
-    cursor:pointer;
-}
-#UserText{
-    float: right;
-}
-#UserIcon{
-    width:2vw;
-    border-radius: 16px;
-}
-
-#lnkSignOut{
-    float: right;
-    width:1.5vw;
-    margin: 2px;
-    cursor:pointer;
-}
-
-.TopPanel{
+#TitleText {
     float: left;
-    width: 100%;
-    padding-left:50vw;
-    border-top-left-radius:10px;
 }
 
-.TopMenu a:hover{
-}
-
-
-.TopMenu a{
+#btnTheme {
+    width: 2vw;
     cursor: pointer;
 }
 
-.TopMenu{
-   float: left;
-   background:transparent;
-    margin:5px;    
+#UserText {
+    float: right;
+}
+
+#UserIcon {
+    width: 2vw;
+    border-radius: 16px;
+}
+
+#lnkSignOut {
+    float: right;
+    width: 1.5vw;
+    margin: 2px;
+    cursor: pointer;
+}
+
+.TopPanel {
+    float: left;
+    width: 100%;
+    padding-left: 50vw;
+    border-top-left-radius: 10px;
+}
+
+.TopMenu a:hover {
+}
+
+
+.TopMenu a {
+    cursor: pointer;
+}
+
+.TopMenu {
+    float: left;
+    background: transparent;
+    margin: 5px;
     padding-right: 5vw;
     padding-left: 5px;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-   cursor:pointer;
+    cursor: pointer;
 }
 
-.TopMenu:hover{
-}
+    .TopMenu:hover {
+    }
 
-.LeftPanel{
+.LeftPanel {
     float: left;
-    width:10vw;   
+    width: 10vw;
     height: 80vh;
 }
 
-.LeftMenu{
+.LeftMenu {
     float: none;
     padding-top: 5%;
     padding-left: 2%;
@@ -92,97 +124,102 @@ a:link{
     border-radius: 5px;
     padding: 5px;
 }
-.LeftMenu:hover{
-}
 
-.LeftMenu a :link{
+    .LeftMenu:hover {
+    }
 
-}
+    .LeftMenu a :link {
+    }
 
-.LeftMenu a:hover{
-}
+    .LeftMenu a:hover {
+    }
 
-#PagePanel{
-    padding:5px;
-    margin:5px;
+#PagePanel {
+    padding: 5px;
+    margin: 5px;
     float: left;
     border-radius: 1%;
     overflow: auto;
     border-style: solid;
     border-width: 1px;
-    min-height:75%;
-    width:75%;
+    min-height: 75%;
+    width: 75%;
 }
-#BottomPanel{
-float: left;
-width:100%;
-text-align: center;
-}
-#Footer{
+
+#BottomPanel {
     float: left;
-    width:100%;
+    width: 100%;
+    text-align: center;
+}
+
+#Footer {
+    float: left;
+    width: 100%;
     font-size: small;
     text-align: center;
 }
-#lst_ThemeOptions{
+
+#lst_ThemeOptions {
     position: absolute;
-    width:100%;
-    margin:25%;
+    width: 100%;
+    margin: 25%;
     background: grey;
     border-color: rgb(243, 228, 228);
     border-width: 2px;
     border-radius: 5px;
 }
 
-#lst_ThemeOptions li{
-    color:black;
-    margin:5px;
-    background: white;
-    border-width: 2px;
-    border-radius: 5px;
-    border-color: brown;
+    #lst_ThemeOptions li {
+        color: black;
+        margin: 5px;
+        background: white;
+        border-width: 2px;
+        border-radius: 5px;
+        border-color: brown;
+        cursor: pointer;
+    }
+
+#PopupBox {
+    position: absolute;
+    margin-left: 50%;
+}
+
+._txtText {
+    text-align: left;
+}
+
+._lblInput {
+    position: relative;
+    float: left;
+}
+
+._lblGroupHd {
+}
+
+._txtNumber {
+    text-align: right;
+}
+
+._btnOK {
+    text-align: center;
+}
+
+._btnCancel {
+    text-align: center;
+}
+
+._lblErrorMsg {
+}
+
+._lblWarning {
+}
+
+.Button {
     cursor: pointer;
 }
-#PopupBox{
-    position: absolute;
-    margin-left: 50%;    
-}
-
-._txtText{
-text-align: left;
-}
-
-._lblInput{
-position: relative;
-float: left;
-}
-
-._lblGroupHd{
-
-}
-
-._txtNumber{
-text-align: right;
-}
-
-._btnOK{
-    text-align: center;
-}
-
-._btnCancel{
-    text-align: center;
-}
-
-._lblErrorMsg{
-
-}
-._lblWarning{
-    
-}
-
 
 @media only screen and (min-width: 650px) {
-    TitlePanel{
-    width: 10vw;
+    TitlePanel {
+        width: 10vw;
     }
 }

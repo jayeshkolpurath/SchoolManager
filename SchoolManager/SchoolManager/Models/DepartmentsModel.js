@@ -6,16 +6,19 @@ class DepartmentsModel extends ModelBase {
     }
 
     GetDepartments() {
-        var Req = JSON.stringify(this.CreateGetRequest());
-        this.#DoRemoteDepartmentsFetch(Req);
+        var Req = JSON.stringify(this.#CreateGetRequest());
+        this.#DoRemoteDepartmentsAPICall(Req);
         return this.Departments;
     }
 
     UpdateDepartments() {
-
+        var Req = JSON.stringify(this.#CreateUpdateRequest());
+        this.#DoRemoteDepartmentsAPICall(Req);
+        return this.Departments;
     }
 
-    #DoRemoteDepartmentsFetch(RequestData) {
+
+    #DoRemoteDepartmentsAPICall(RequestData) {
         var APIURL = this.Settings.APIURL + "/admin/ManageDepartment";
         var AuthHeaderValue = "Bearer " + SessionHelper.Get("SAAPISessionKey");
         var ContentLength = RequestData.length;
@@ -33,7 +36,7 @@ class DepartmentsModel extends ModelBase {
                 timeout: this.Settings.APITimeOut,
                 data: RequestData,
                 success: function (data) {
-                    this.model.#ProcessGetDepartmentsResponse(data);
+                    this.model.#ProcessDepartmentsAPIResponse(data);
                 },
                 error: function (jqXHR, status, err) {
 
@@ -44,17 +47,22 @@ class DepartmentsModel extends ModelBase {
 
         }
     }
-    #ProcessGetDepartmentsResponse(data) {
-        if (data != null && data.departments != null) {
-            this.Departments = [];
-            data.departments.forEach(element => {
-                var Dept = new DepartmentEntry(0, element.code, element.name, "");
-                this.Departments.push(Dept);
-            });
-        } 
+    #ProcessDepartmentsAPIResponse(data) {
+        try {
+            if (data != null && data.departments != null) {
+                this.Departments = [];
+                data.departments.forEach(element => {
+                    var Dept = new DepartmentEntry(element.id, element.code, element.name, element.action);
+                    this.Departments.push(Dept);
+                });
+            }
+        }
+        catch (Error) {
+
+        }
     }
 
-    CreateGetRequest() {
+    #CreateGetRequest() {
         var Req = {
             "Departments": [
                 {
@@ -62,6 +70,16 @@ class DepartmentsModel extends ModelBase {
                 }
             ]
         };
+        return Req;
+    }
+
+    #CreateUpdateRequest() {
+        var Req = {
+            "Departments": []
+        };
+        this.Departments.forEach(element => {
+            Req.Departments.push({id:element.ID,code:element.Code, name:element.Name, action:element.Action});
+        });
         return Req;
     }
 }

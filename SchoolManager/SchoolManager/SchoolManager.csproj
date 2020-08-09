@@ -124,7 +124,9 @@
     <Content Include="Content\Image\Add.jpg" />
     <Content Include="Content\Image\Cancel.jpg" />
     <Content Include="Content\Image\Delete.jpg" />
+    <Content Include="Content\Image\Deleted.jpg" />
     <Content Include="Content\Image\Edit.jpg" />
+    <Content Include="Content\Image\Edited.jpg" />
     <Content Include="Content\Image\OK.jpg" />
     <Content Include="Content\Image\Refresh.jpg" />
     <Content Include="Content\Image\SignOut.jpg" />
