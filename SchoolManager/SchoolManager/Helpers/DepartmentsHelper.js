@@ -5,14 +5,16 @@ class DepartmentsHelper extends HelperBase {
     }
     SaveModelCopy(Data) {
         try {
-            SessionHelper.Set("ModelCopy", JSON.stringify(Data));
+            var objStorage = new StorageHelper();
+            objStorage.Set("ModelCopy", JSON.stringify(Data));
         }
         catch (Error) {
 
         }
     }
     GetModelCopy() {
-        var RetVal = JSON.parse(SessionHelper.Get("ModelCopy"));
+        var objStorage = new StorageHelper();
+        var RetVal = JSON.parse(objStorage.Get("ModelCopy"));
         return RetVal;
     }
 }

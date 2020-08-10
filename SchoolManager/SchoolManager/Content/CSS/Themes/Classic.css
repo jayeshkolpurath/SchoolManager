@@ -1,126 +1,125 @@
 ﻿
-.ThemeBody a{
-    color:black;
-}
-
-.ThemeBody a:link{
+.ThemeBody a {
     color: black;
 }
 
-.ThemeTitlePanel{
+    .ThemeBody a:link {
+        color: black;
+    }
+
+.ThemeTitlePanel {
     color: #323a45;
 }
 
-.ThemeTitleItem{
-color:black;
+.ThemeTitleItem {
+    color: black;
 }
 
-.ThemeTitleText{
+.ThemeTitleText {
 }
 
-.ThemeUserText{
+.ThemeUserText {
 }
 
-.ThemelnkSignOut{
-    color:black;
-    background:#626f80;
+.ThemelnkSignOut {
+    color: black;
+    background: #626f80;
 }
 
-.ThemeTopPanel{
+.ThemeTopPanel {
     background: #027876;
     box-shadow: #e2e2e2;
 }
 
-.ThemeTopMenu a:hover{
-    color:black;
+.ThemeTopMenu a:hover {
+    color: black;
 }
 
 
-.ThemeTopMenu a{
-    color:#0181bb;    
+.ThemeTopMenu a {
+    color: #0181bb;
     cursor: pointer;
 }
 
-.ThemeTopMenu{
-   color:white;
+.ThemeTopMenu {
+    color: white;
 }
 
-.ThemeTopMenu:hover{
-    color:white;
-    background: #e2e2e2
-}
+    .ThemeTopMenu:hover {
+        color: white;
+        background: #e2e2e2
+    }
 
-.ThemeLeftPanel{
+.ThemeLeftPanel {
     background-color: #326b4a;
-    background: #e2e2e2; 
+    background: #e2e2e2;
 }
 
-.ThemeLeftMenu{
+.ThemeLeftMenu {
     color: #0181bb;
 }
-.ThemeLeftMenu:hover{
-    background: white;
-}
 
-.ThemeLeftMenu a :link{
-    background-color: #fff;
-    background: #626f80;
-}
+    .ThemeLeftMenu:hover {
+        background: white;
+    }
 
-.ThemeLeftMenu a:hover{
-    background-color: #fff;
-    background: #3b3c3d;
-}
+    .ThemeLeftMenu a :link {
+        background-color: #fff;
+        background: #626f80;
+    }
 
-.ThemePagePanel{
+    .ThemeLeftMenu a:hover {
+        background-color: #fff;
+        background: #3b3c3d;
+    }
+
+.ThemePagePanel {
     border-color: cadetblue;
 }
 
-.ThemeBottomPanel{
-float: left;
-width:100%;
+.ThemeBottomPanel {
+    float: left;
+    width: 100%;
 }
 
-.ThemeFooter{
-    background:#b9bbbd;
+.ThemeFooter {
+    background: #b9bbbd;
 }
 
 .ThemeErrorMessage {
-    color:red;
+    color: red;
 }
 
 
-.Theme_txtText{
-color:black;
-background: white;
-    }
-    
-    .Theme_lblInput{
-    color:black;
-    }
-    
-    .Theme_lblGroup{
-    border-color:white;
-    }
-    
-    .Theme_txtNumber{
-color:black;
-    }
-    
-    .Theme_btnOK{
-        color:darkgray;
-    }
-    
-    .Theme_btnCancel{
-        color:gray;
-    }
-    
-    ._lblErrorMsg{
-    color:red;
-    }
-    
-    .Theme_lblWarning{
-        color:red;
-    }
-    
+.Theme_txtText {
+    color: black;
+    background: white;
+}
 
+.Theme_lblInput {
+    color: black;
+}
+
+.Theme_lblGroup {
+    border-color: white;
+}
+
+.Theme_txtNumber {
+    color: black;
+}
+
+.Theme_btnOK {
+    color: darkgray;
+}
+
+.Theme_btnCancel {
+    color: gray;
+}
+
+._lblErrorMsg {
+    color: red;
+}
+
+.Theme_lblWarning {
+    color: red;
+}
