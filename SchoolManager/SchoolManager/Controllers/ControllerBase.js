@@ -1,21 +1,27 @@
 ﻿'use strict';
 class ControllerBase {
     constructor() {
-        var stng = SessionHelper.Get("SASettings");
-        if (!stng) {
-            $.getJSON("/params.json", function (s) {
-                SessionHelper.Set("SASettings", JSON.stringify(s.Settings));
-                this.Settings = s.Settings;
-            });
-        } else {
-            this.Settings = JSON.parse(stng);
+        try {
+            var objStorage = new StorageHelper();
+            var stng = objStorage.Get("SASettings");
+            if (!stng) {
+                $.getJSON("/params.json", function (s) {
+                    objStorage.Set("SASettings", JSON.stringify(s.Settings));
+                    this.Settings = s.Settings;
+                });
+            } else {
+                this.Settings = JSON.parse(stng);
+            }
+        } catch (Error) {
+
         }
 
     }
     Logout() {
-        SessionHelper.Delete("SACurrentUserName");
-        SessionHelper.Delete("SALoginTime");
-        SessionHelper.Delete("SAAPISessionKey");
+        var objStorage = new StorageHelper();
+        objStorage.Delete("SACurrentUserName");
+        objStorage.Delete("SALoginTime");
+        objStorage.Delete("SAAPISessionKey");
     }
 
     PageInit() {
@@ -23,19 +29,21 @@ class ControllerBase {
     }
 
     SessionCheck() {
-        var SessionID = SessionHelper.Get("SAAPISessionKey");
+        var objStorage = new StorageHelper();
+        var SessionID = objStorage.Get("SAAPISessionKey");
         if (SessionID) {
             return true;
         } else {
             return false;
         }
     }
- 
+
 
     //Private Members    
     _ResetSession() {
-        SessionHelper.Set("SASessionID", "");
-        SessionHelper.Delete("SASessionID");
+        var objStorage = new StorageHelper();
+        objStorage.Set("SASessionID", "");
+        objStorage.Delete("SASessionID");
     }
 }
 

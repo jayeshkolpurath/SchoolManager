@@ -20,7 +20,7 @@ class DepartmentsModel extends ModelBase {
 
     #DoRemoteDepartmentsAPICall(RequestData) {
         var APIURL = this.Settings.APIURL + "/admin/ManageDepartment";
-        var AuthHeaderValue = "Bearer " + SessionHelper.Get("SAAPISessionKey");
+        var AuthHeaderValue = "Bearer " + new StorageHelper().Get("SAAPISessionKey");
         var ContentLength = RequestData.length;
         var Response = null;
         try {

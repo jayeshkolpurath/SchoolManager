@@ -14,7 +14,9 @@
     background: url('/Content/Image/Add.jpg');
     height: 1.5vw;
     background-size: 1.5vw;
-    float: left;
+    position:absolute;
+    margin-left: 1vw;
+    margin-top: 0.25vw;
 }
 
 
@@ -42,7 +44,6 @@
 #_lstDepartments {
     float: left;
     padding: 1vw;
-    margin: 2vw;
     clear: left;
 }
 .RowAction{
@@ -85,7 +86,7 @@
     background: url('/Content/Image/OK.jpg');
     height: 1.5vw;
     background-size: 1.5vw;
-    margin-left: 36vw;
+    margin-left: 35vw;
     clear: left;
 }
 
@@ -94,7 +95,7 @@
     float: left;
     width: 19vw;
     font-size: larger;
-    margin-left: 5vw;
+    margin-left: 4.5vw;
 }
 
 .DepName {

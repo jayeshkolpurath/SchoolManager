@@ -52,8 +52,9 @@ class LayoutController extends ControllerBase {
 
     GetTheme() {
         var ThemeName;
-        if (SessionHelper.Get("Theme")) {
-            ThemeName = SessionHelper.Get("Theme");
+        var objStorage = new StorageHelper();
+        if (objStorage.Get("Theme")) {
+            ThemeName = objStorage.Get("Theme");
         } else {
             ThemeName = "Classic";
         }
@@ -61,7 +62,8 @@ class LayoutController extends ControllerBase {
     }
 
     SetTheme(ThemeName) {
-        SessionHelper.Set("Theme", ThemeName);
+        var objStorage = new StorageHelper();
+        objStorage.Set("Theme", ThemeName);
     }
 }
 
@@ -75,7 +77,8 @@ $(document).ready(function () {
     Ctrl.HandleMenuClicks();
     LoadTheme(Ctrl);
     if (Ctrl.SessionCheck()) {
-        var UserName = sessionStorage.getItem("SACurrentUserName");
+        var objStorage = new StorageHelper();
+        var UserName = objStorage.Get("SACurrentUserName");
         $("#UserName").html(UserName);
         setTimeout("LoadContentPage('PagePanel', '/Views/Home.html', 'Home')",10);
     } else {
