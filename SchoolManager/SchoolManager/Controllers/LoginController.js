@@ -5,6 +5,7 @@ class LoginController extends ControllerBase {
         super();
         this.Model = new LoginModel(this.Settings);
         this.Helper = new LoginHelper(this.Settings);
+        this.SessionHelper = new SessionHelper(this.Settings);
     }
     PopulatePageControls() {
 
@@ -14,12 +15,12 @@ class LoginController extends ControllerBase {
         try {
             var LoginResult = this.Model.UserLogin(UserName, Password);
             if (LoginResult) {
-                this.Helper.SaveUserSession(UserName, this.Model.SessionKey)
-
+                this.SessionHelper.SaveUserSession(UserName);
+                this.SessionHelper.UpdateSessionKey(this.Model.SessionKey);
                 $("#TitlePanel").css("display", "none");
                 window.location = "/Views/Layout.html";
             } else {
-                this.Helper.RemoveUserSession();
+                this.SessionHelper.RemoveUserSession();
                 $("#lbl_ErrorMsg").html("Invalid User Name or Password!");
             }
         }
@@ -34,7 +35,6 @@ class LoginController extends ControllerBase {
 //Page Events
 $(document).ready(function () {
     var Controller = new LoginController();
-
     Controller.PopulatePageControls();
 
     $("#LoginButton").click(function () {

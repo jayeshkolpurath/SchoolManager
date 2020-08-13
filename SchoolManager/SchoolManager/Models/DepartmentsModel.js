@@ -6,24 +6,31 @@ class DepartmentsModel extends ModelBase {
     }
 
     GetDepartments() {
-        var Req = JSON.stringify(this.#CreateGetRequest());
-        this.#DoRemoteDepartmentsAPICall(Req);
-        return this.Departments;
+        try {
+            var Req = JSON.stringify(this.#CreateGetRequest());
+            this.#DoRemoteDepartmentsAPICall(Req);
+            return this.Departments;
+        } catch (Ex) {
+            throw Ex;
+        }
     }
 
     UpdateDepartments() {
-        var Req = JSON.stringify(this.#CreateUpdateRequest());
-        this.#DoRemoteDepartmentsAPICall(Req);
-        return this.Departments;
+        try {
+            var Req = JSON.stringify(this.#CreateUpdateRequest());
+            this.#DoRemoteDepartmentsAPICall(Req);
+            return this.Departments;
+        } catch (Ex) {
+            throw Ex;
+        }
     }
 
-
     #DoRemoteDepartmentsAPICall(RequestData) {
-        var APIURL = this.Settings.APIURL + "/admin/ManageDepartment";
-        var AuthHeaderValue = "Bearer " + new StorageHelper().Get("SAAPISessionKey");
-        var ContentLength = RequestData.length;
-        var Response = null;
         try {
+            var APIURL = this.Settings.APIURL + "/admin/ManageDepartment";
+            var AuthHeaderValue = "Bearer " + new StorageHelper().Get("SAAPISessionKey");
+            var ContentLength = RequestData.length;
+            var Response = null;
             $.ajax({
                 type: "POST",
                 url: APIURL,
@@ -43,8 +50,8 @@ class DepartmentsModel extends ModelBase {
                 }
             });
         }
-        catch (Error) {
-
+        catch (Ex) {
+            throw Ex;
         }
     }
     #ProcessDepartmentsAPIResponse(data) {
@@ -57,8 +64,8 @@ class DepartmentsModel extends ModelBase {
                 });
             }
         }
-        catch (Error) {
-
+        catch (Ex) {
+            throw Ex;
         }
     }
 
@@ -74,13 +81,17 @@ class DepartmentsModel extends ModelBase {
     }
 
     #CreateUpdateRequest() {
-        var Req = {
-            "Departments": []
-        };
-        this.Departments.forEach(element => {
-            Req.Departments.push({id:element.ID,code:element.Code, name:element.Name, action:element.Action});
-        });
-        return Req;
+        try {
+            var Req = {
+                "Departments": []
+            };
+            this.Departments.forEach(element => {
+                Req.Departments.push({ id: element.ID, code: element.Code, name: element.Name, action: element.Action });
+            });
+            return Req;
+        } catch (Ex) {
+            throw Ex;
+        }
     }
 }
 

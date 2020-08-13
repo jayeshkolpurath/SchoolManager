@@ -14,9 +14,8 @@
     background: url('/Content/Image/Add.jpg');
     height: 1.5vw;
     background-size: 1.5vw;
-    position:absolute;
-    margin-left: 1vw;
-    margin-top: 0.25vw;
+    position: absolute;
+    margin-top: 1.75vh;
 }
 
 
@@ -49,9 +48,11 @@
 .RowAction{
     float:left;
 }
+
 .RowID {
     float: left;
 }
+
 ._btnRefresh {
     margin-left: 1vw;
     width: 1.5vw;
@@ -60,7 +61,6 @@
     background-size: 1.5vw;
     float: left;
 }
-
 
 ._btnDelete {
     float: left;
