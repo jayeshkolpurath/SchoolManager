@@ -12,16 +12,17 @@ class ControllerBase {
             } else {
                 this.Settings = JSON.parse(stng);
             }
-        } catch (Error) {
-
+        } catch (Ex) {
+            throw Ex;
         }
-
     }
+
     Logout() {
         var objStorage = new StorageHelper();
         objStorage.Delete("SACurrentUserName");
         objStorage.Delete("SALoginTime");
         objStorage.Delete("SAAPISessionKey");
+        window.location = "/Views/Login.html";
     }
 
     PageInit() {

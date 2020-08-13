@@ -7,12 +7,18 @@
     }
 
     UserLogin(UserName, Password) {
-        this.#DoRemoteLogin(UserName, Password);
-        return (this.SessionKey !== null);
+        var RetVal = false;
+        try {
+            var RequestData = this.#CreateGetRequest(UserName, Password);
+            this.#DoRemoteLogin(RequestData);
+            RetVal = (this.SessionKey !== null)
+        } catch (Error) {
+
+        }
+        return RetVal;
     }
 
-    #DoRemoteLogin(UserName, Password) {
-        var RequestData = this.#CreateGetRequest(UserName, Password);
+    #DoRemoteLogin(RequestData) {
         this.SessionKey = null;
         var Payload = JSON.stringify(RequestData);
         var ContentLength = Payload.length;

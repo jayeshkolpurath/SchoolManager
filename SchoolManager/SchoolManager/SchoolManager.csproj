@@ -161,6 +161,7 @@
     <Content Include="Helpers\GeneralHelper.js" />
     <Content Include="Helpers\HelperBase.js" />
     <Content Include="Helpers\LogHelper.js" />
+    <Content Include="Helpers\SessionHelper.js" />
     <Content Include="Helpers\LoginHelper.js" />
     <Content Include="Helpers\StorageHelper.js" />
     <Content Include="Models\HomeModel.js" />

@@ -1,9 +1,13 @@
 ﻿class StorageHelper {
     constructor(StorageType) {  //local or session
-        if (StorageType!=null && StorageType.toLowerCase() == "local") {
-            this.Storage = localStorage;
-        } else {
-            this.Storage = sessionStorage;
+        try {
+            if (StorageType != null && StorageType.toLowerCase() == "local") {
+                this.Storage = localStorage;
+            } else {
+                this.Storage = sessionStorage;
+            }
+        } catch (Ex) {
+            throw Ex;
         }
     }
 
@@ -12,11 +16,19 @@
     }
 
     Get(Name) {
-        return this.Storage.getItem(Name);
+        try {
+            return this.Storage.getItem(Name);
+        } catch (Ex) {
+            throw Ex;
+        }
     }
 
     Delete(Name) {
-        this.Storage.setItem(Name, null);
-        this.Storage.removeItem(Name);
+        try {
+            this.Storage.setItem(Name, null);
+            this.Storage.removeItem(Name);
+        } catch (Ex) {
+            throw Ex;
+        }
     }
 }
