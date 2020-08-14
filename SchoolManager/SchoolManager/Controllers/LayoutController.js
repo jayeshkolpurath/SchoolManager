@@ -19,7 +19,8 @@ class LayoutController extends ControllerBase {
         return [
             { MenuName: "Home", MenuText: "Home", MenuLink: "/Views/Home.html" },
             { MenuName: "Student", MenuText: "Student Register", MenuLink: "/Views/StudentRegister.html" },
-            { MenuName: "Department", MenuText: "Department", MenuLink: "/Views/Departments.html" }
+            { MenuName: "Department", MenuText: "Department", MenuLink: "/Views/Departments.html" },
+            { MenuName: "Countries", MenuText: "Countries", MenuLink: "/Views/Countries.html" }
         ];
     }
 
@@ -41,6 +42,9 @@ class LayoutController extends ControllerBase {
                 break;
             case "Department":
                 SideMenu = [{ MenuName: "Departments", MenuText: "Departments", MenuLink: "/Views/Departments.html" }];
+                break;
+            case "Countries":
+                SideMenu = [{ MenuName: "Countries", MenuText: "Countries", MenuLink: "/Views/Countries.html" }];
                 break;
         }
         return SideMenu;

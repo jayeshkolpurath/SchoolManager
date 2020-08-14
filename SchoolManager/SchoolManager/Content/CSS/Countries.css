@@ -1,0 +1,111 @@
+﻿body {
+    float: left;
+}
+
+._txtText {
+    float: left;
+    margin-left: 1vw;
+    vertical-align: top;
+}
+
+
+#_btnAdd {
+    width: 1.5vw;
+    background: url('/Content/Image/Add.jpg');
+    height: 1.5vw;
+    background-size: 1.5vw;
+    float: left;
+}
+
+
+._lstRow {
+    float: none;
+    padding-top: 5px;
+    clear: left;
+}
+
+._lstHead {
+    float: none;
+    padding-top: 5px;
+    clear: left;
+    font-weight: bold;
+}
+
+.ColHdCode {
+    margin-left: 1vw;
+}
+
+.ColHdName {
+    margin-left: 2vw;
+}
+
+#_lstCountries {
+    float: left;
+    padding: 1vw;
+    margin: 2vw;
+    clear: left;
+}
+
+.RowAction {
+    float: left;
+}
+
+.RowID {
+    float: left;
+}
+
+._btnRefresh {
+    margin-left: 1vw;
+    width: 1.5vw;
+    background: url('/Content/Image/Refresh.jpg');
+    height: 1.5vw;
+    background-size: 1.5vw;
+    float: left;
+}
+
+
+._btnDelete {
+    float: left;
+    width: 1.5vw;
+    background: url('/Content/Image/Delete.jpg');
+    height: 1.5vw;
+    margin-left: 1vw;
+    background-size: 1.5vw;
+}
+
+._btnEdit {
+    float: left;
+    width: 1.5vw;
+    background: url('/Content/Image/Edit.jpg');
+    height: 1.5vw;
+    margin-left: 1vw;
+    background-size: 1.5vw;
+}
+
+#_btnOK {
+    float: left;
+    width: 1.5vw;
+    background: url('/Content/Image/OK.jpg');
+    height: 1.5vw;
+    background-size: 1.5vw;
+    margin-left: 36vw;
+    clear: left;
+}
+
+._lblGroupHd {
+    font-weight: bold;
+    float: left;
+    width: 19vw;
+    font-size: larger;
+    margin-left: 5vw;
+}
+
+.CtrName {
+    float: left;
+    width: 20vw;
+}
+
+.CtrCode {
+    float: left;
+    width: 10vw;
+}
