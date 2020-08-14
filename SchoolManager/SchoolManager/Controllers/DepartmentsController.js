@@ -55,11 +55,8 @@ class DepartmentsController extends ControllerBase {
             Helper.AddRow();
             var RowCount = $("[id^=_lstRow]").length;
             $("#_txtDepCode_" + RowCount).focus();
-//            var pos = $("#_lstDepartments").children("._lstRow").last().position();
-  //          $("#_btnAdd").css({ left: pos.left, top: pos.top });
-
             var LastRow = $("#_lstDepartments").children().last();
-            $("#_btnAdd").css({ left: LastRow.children().eq(3).position().left, top: LastRow.position().top });
+            $("#_btnAdd").css({ left: LastRow.left, top: LastRow.position().top });
 
 
         } catch (Ex) {
@@ -119,9 +116,8 @@ class DepartmentsController extends ControllerBase {
     #PopulatePageControls() {
         try {
             this.Helper.PopulatePageControls(this.Model);
-            var Rows= $("#_lstDepartments").children();
-//            $("#_btnAdd").css({ left: Rows.first().children().eq(4).position().left, top: Rows.last().position().top + Rows.last().height() });
-            $("#_btnAdd").css({ left: Rows.first().children().eq(3).position().left + Rows.first().children().eq(3).width(), top: Rows.last().position().top + Rows.last().height() });
+            var LastRow= $("#_lstDepartments").children().last();
+            $("#_btnAdd").css({ left: LastRow.left, top: LastRow.position().top });
         } catch (Ex) {
             new LogHelper(this.Settings).LogError(constructor.name, Ex);
         }
