@@ -7,6 +7,9 @@ class DepartmentsController extends ControllerBase {
             this.Helper = new DepartmentsHelper(this.Settings);
         } catch (Ex) {
             new LogHelper(this.Settings).LogError("Departments Constructor", Ex);
+            if (this.Model) {
+                this.Model.LogException(Ex.message, 'constructor', 'DepartmentsController', '');
+            }
         }
     }
 
@@ -19,6 +22,9 @@ class DepartmentsController extends ControllerBase {
         }
         catch (Ex) {
             new LogHelper(this.Settings).LogError("RenderPage :" + constructor.name, Ex);
+            if (this.Model) {
+                this.Model.LogException(Ex.message, 'RenderPage', 'DepartmentsController', '');
+            }
         }
     }
 
@@ -34,6 +40,9 @@ class DepartmentsController extends ControllerBase {
         }
         catch (Ex) {
             new LogHelper(this.Settings).LogError(constructor.name, Ex);
+            if (this.Model) {
+                this.Model.LogException(Ex.message, 'FetchModel', 'DepartmentsController', '');
+            }
         }
     }
 
@@ -43,6 +52,9 @@ class DepartmentsController extends ControllerBase {
         }
         catch (Ex) {
             new LogHelper(this.Settings).LogError(constructor.name, Ex);
+            if (this.Model) {
+                this.Model.LogException(Ex.message, 'SaveModelCopy', 'DepartmentsController', '');
+            }
         }
     }
 
@@ -72,6 +84,10 @@ class DepartmentsController extends ControllerBase {
             }
         } catch (Ex) {
             new LogHelper(this.Settings).LogError(constructor.name, Ex);
+            var Model = EventArgs.data.Model;
+            if (Model) {
+                Model.LogException(Ex.message, 'OkButtonClicked', 'DepartmentsController', '');
+            }
         }
 
     }
@@ -88,6 +104,10 @@ class DepartmentsController extends ControllerBase {
 
         } catch (Ex) {
             new LogHelper(this.Settings).LogError("btnAdd Click :" + constructor.name, Ex);
+            var Model = EventArgs.data.Model;
+            if (Model) {
+                Model.LogException(Ex.message, 'AddButtonClicked', 'DepartmentsController', '');
+            }
         }
     }
 
@@ -104,6 +124,10 @@ class DepartmentsController extends ControllerBase {
             }
         } catch (Ex) {
             new LogHelper(this.Settings).LogError(constructor.name, Ex);
+            var Model = EventArgs.data.Model;
+            if (Model) {
+                Model.LogException(Ex.message, 'KeyPressed', 'DepartmentsController', '');
+            }
         }
     }
 
@@ -115,6 +139,10 @@ class DepartmentsController extends ControllerBase {
             $("#_txtDepCode_" + id).focus();
         } catch (Ex) {
             new LogHelper(this.Settings).LogError(constructor.name, Ex);
+            var Model = EventArgs.data.Model;
+            if (Model) {
+                Model.LogException(Ex.message, 'EditButtonPressed', 'DepartmentsController', '');
+            }
         }
     }
 
@@ -124,6 +152,10 @@ class DepartmentsController extends ControllerBase {
             Helper.DeleteRow(this.id);
         } catch (Ex) {
             new LogHelper(this.Settings).LogError(constructor.name, Ex);
+            var Model = EventArgs.data.Model;
+            if (Model) {
+                Model.LogException(Ex.message, 'DeleteButtonPressed', 'DepartmentsController', '');
+            }
         }
     }
 
@@ -133,6 +165,10 @@ class DepartmentsController extends ControllerBase {
             Helper.RefreshRow(this.id);
         } catch (Ex) {
             new LogHelper(this.Settings).LogError(constructor.name, Ex);
+            var Model = EventArgs.data.Model;
+            if (Model) {
+                Model.LogException(Ex.message, 'RefreshButtonPressed', 'DepartmentsController', '');
+            }
         }
     }
     #TxtFocusOut(EventArgs) {
@@ -141,6 +177,10 @@ class DepartmentsController extends ControllerBase {
             Helper.TxtFocusOut(this.id);
         } catch (Ex) {
             new LogHelper(this.Settings).LogError(constructor.name, Ex);
+            var Model = EventArgs.data.Model;
+            if (Model) {
+                Model.LogException(Ex.message, 'TxtFocusOut', 'DepartmentsController', '');
+            }
         }
     }
     #OkPopup(EventArgs) {
@@ -151,6 +191,10 @@ class DepartmentsController extends ControllerBase {
         }
         catch (Ex) {
             new LogHelper(this.Settings).LogError(constructor.name, Ex);
+            var Model = EventArgs.data.Model;
+            if (Model) {
+                Model.LogException(Ex.message, 'OkPopup', 'DepartmentsController', '');
+            }
         }
     }
     #BindEventHandlers() {
@@ -172,6 +216,9 @@ class DepartmentsController extends ControllerBase {
 
         } catch (Ex) {
             new LogHelper(this.Settings).LogError(constructor.name, Ex);
+            if (this.Model) {
+                this.Model.LogException(Ex.message, 'PopulatePageControls', 'DepartmentsController', '');
+            }
         }
     }
 }
@@ -189,6 +236,7 @@ function RenderDepartmentsPage() {
     }
     catch (Ex) {
         new LogHelper(this.Settings).LogError("RenderPage:" + constructor.name, Ex);
+        new DepartmentsModel(this.Settings).LogException(Ex.message, 'RenderDepartmentsPage', 'DepartmentsController', '')
     }
 }
 
