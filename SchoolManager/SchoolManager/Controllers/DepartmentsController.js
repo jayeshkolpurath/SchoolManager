@@ -24,7 +24,13 @@ class DepartmentsController extends ControllerBase {
 
     #FetchModel() {
         try {
-            this.Model.GetDepartments();
+            if (sessionStorage.getItem("DepartmentCopy") === null) {
+                this.Model.GetDepartments();
+            }
+            else {
+                this.Model.Departments = this.Helper.GetModelCopy().Departments;
+            }
+
         }
         catch (Ex) {
             new LogHelper(this.Settings).LogError(constructor.name, Ex);
@@ -42,11 +48,32 @@ class DepartmentsController extends ControllerBase {
 
     #OkButtonClicked(EventArgs) {
         try {
+            $("#_saveLoader").show();
             var Helper = EventArgs.data.Helper;
-            Helper.SaveData(EventArgs.data.Model);
+            if (Helper.ValidateData()) {              
+                setTimeout(function () {
+                    try {
+                        Helper.SaveData(EventArgs.data.Model);
+                        var Model = EventArgs.data.Model;
+                        Model.UpdateDepartments();
+                        Helper.SaveModelCopy(Model);
+                        if (Helper.ShowSavedAction(EventArgs.data.Model)) {
+                        }
+                    } catch (Ex) {
+                        new LogHelper(this.Settings).LogError(constructor.name, Ex);
+                    }
+                    $("#_saveLoader").hide();
+                    $("#_saveSuccess").show();
+                }, 1000);
+            }
+            else {
+                $("#_saveLoader").hide();
+                console.log('In valid entry');
+            }
         } catch (Ex) {
             new LogHelper(this.Settings).LogError(constructor.name, Ex);
         }
+
     }
 
     #AddButtonClicked(EventArgs) {
@@ -68,7 +95,12 @@ class DepartmentsController extends ControllerBase {
         try {
             var keycode = (EventArgs.keyCode ? EventArgs.keyCode : EventArgs.which);
             if (keycode == '13') {
-                $(this).next().focus();
+                if (!isNaN(($(this).attr('tabindex')))) {
+                    var tabindex = parseInt($(this).attr('tabindex'));
+                    tabindex += 1;
+                    $('[tabindex = ' + tabindex + ']').focus();
+                }
+
             }
         } catch (Ex) {
             new LogHelper(this.Settings).LogError(constructor.name, Ex);
@@ -103,21 +135,41 @@ class DepartmentsController extends ControllerBase {
             new LogHelper(this.Settings).LogError(constructor.name, Ex);
         }
     }
-
+    #TxtFocusOut(EventArgs) {
+        try {
+            var Helper = EventArgs.data.Helper;
+            Helper.TxtFocusOut(this.id);
+        } catch (Ex) {
+            new LogHelper(this.Settings).LogError(constructor.name, Ex);
+        }
+    }
+    #OkPopup(EventArgs) {
+        try {
+            $('#_saveSuccess').hide();
+            var Ctrl = EventArgs.data.Ctrl;
+            Ctrl.RenderPage();
+        }
+        catch (Ex) {
+            new LogHelper(this.Settings).LogError(constructor.name, Ex);
+        }
+    }
     #BindEventHandlers() {
-        $("#_btnOK").click({ Model:this.Model, Helper:this.Helper }, this.#OkButtonClicked);
-        $("#_btnAdd").click({ Model:this.Model, Helper:this.Helper }, this.#AddButtonClicked);
-        $(document).on("keydown", ":text", { Model:this.Model, Helper:this.Helper },this.#KeyPressed);
-        $(document).on('click', '[id^=_btnEdit]', { Model:this.Model, Helper:this.Helper },this.#EditButtonPressed);
-        $(document).on('click', '[id^=_btnDelete]', { Model:this.Model, Helper:this.Helper },this.#DeleteButtonPressed);
-        $(document).on('click', '[id^=_btnRefresh]', { Model: this.Model, Helper: this.Helper },this.#RefreshButtonPressed);
+        $("#_btnOK").click({ Model: this.Model, Helper: this.Helper }, this.#OkButtonClicked);
+        $("#_btnAdd").click({ Model: this.Model, Helper: this.Helper }, this.#AddButtonClicked);
+        $(document).on("keydown", ":text", { Model: this.Model, Helper: this.Helper }, this.#KeyPressed);
+        $(document).on('click', '[id^=_btnEdit]', { Model: this.Model, Helper: this.Helper }, this.#EditButtonPressed);
+        $(document).on('click', '[id^=_btnDelete]', { Model: this.Model, Helper: this.Helper }, this.#DeleteButtonPressed);
+        $(document).on('click', '[id^=_btnRefresh]', { Model: this.Model, Helper: this.Helper }, this.#RefreshButtonPressed);
+        $(document).on('focusout', '[id^=_txt]', { Model: this.Model, Helper: this.Helper }, this.#TxtFocusOut);
+        $(document).on('click', '[id^=okPopUp]', { Ctrl: this, Model: this.Model, Helper: this.Helper }, this.#OkPopup);
     }
 
     #PopulatePageControls() {
         try {
             this.Helper.PopulatePageControls(this.Model);
-            var LastRow= $("#_lstDepartments").children().last();
+            var LastRow = $("#_lstDepartments").children().last();
             $("#_btnAdd").css({ left: LastRow.left, top: LastRow.position().top });
+
         } catch (Ex) {
             new LogHelper(this.Settings).LogError(constructor.name, Ex);
         }

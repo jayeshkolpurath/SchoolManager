@@ -44,6 +44,9 @@ class DepartmentsModel extends ModelBase {
                 data: RequestData,
                 success: function (data) {
                     this.model.#ProcessDepartmentsAPIResponse(data);
+                    if (data.signature != null) {
+                        new StorageHelper().Set("SAAPISessionKey", data.signature);
+                    }
                 },
                 error: function (jqXHR, status, err) {
 
@@ -59,8 +62,10 @@ class DepartmentsModel extends ModelBase {
             if (data != null && data.departments != null) {
                 this.Departments = [];
                 data.departments.forEach(element => {
-                    var Dept = new DepartmentEntry(element.id, element.code, element.name, element.action);
-                    this.Departments.push(Dept);
+                    if ((element.action == 'D' && element.message != '') || element.action != 'D') {
+                        var Dept = new DepartmentEntry(element.id, element.code, element.name, element.action, element.message);
+                        this.Departments.push(Dept);
+                    }
                 });
             }
         }
@@ -96,10 +101,11 @@ class DepartmentsModel extends ModelBase {
 }
 
 class DepartmentEntry {
-    constructor(ID, Code, Name, Action) {
+    constructor(ID, Code, Name, Action, Message) {        
         this.ID = ID;
         this.Code = Code;
         this.Name = Name;
         this.Action = Action;
+        this.Message = Message;
     }
 }
