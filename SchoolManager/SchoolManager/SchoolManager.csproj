@@ -164,6 +164,7 @@
     <Content Include="Helpers\SessionHelper.js" />
     <Content Include="Helpers\LoginHelper.js" />
     <Content Include="Helpers\StorageHelper.js" />
+    <Content Include="Images\Loader\ball.gif" />
     <Content Include="Models\HomeModel.js" />
     <Content Include="Models\DepartmentsModel.js" />
     <Content Include="Models\ModelBase.js" />
