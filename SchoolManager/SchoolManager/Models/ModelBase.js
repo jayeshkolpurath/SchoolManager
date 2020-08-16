@@ -4,11 +4,9 @@
     }
     LogException(Remarks,MethodName,ClassName,TUI) {
         try {
-            console.log('LogException');
-            var Req = JSON.stringify(this.#CreateExceptionRequest(Remarks, MethodName, ClassName, TUI));
+                        var Req = JSON.stringify(this.#CreateExceptionRequest(Remarks, MethodName, ClassName, TUI));
             this.#DoRemoteExceptioAPICall(Req);
         } catch (Ex) {
-            console.log('LogException Ex');
             throw Ex;
         }
     }
@@ -21,7 +19,6 @@
             Req.eventlogs.push({ Remarks: Remarks, MethodName: MethodName, ClassName: ClassName, TUI: TUI , action : 'A'});
             return Req;
         } catch (Ex) {
-            console.log('CreateExceptionRequest Ex');
             throw Ex;
         }
     }
@@ -44,7 +41,6 @@
                 timeout: this.Settings.APITimeOut,
                 data: RequestData,
                 success: function (data) {
-                    //this.model.#ProcessDepartmentsAPIResponse(data);
                 },
                 error: function (jqXHR, status, err) {
 
@@ -52,7 +48,6 @@
             });
         }
         catch (Ex) {
-            console.log('DoRemoteExceptioAPICall Ex');
             throw Ex;
         }
     }
