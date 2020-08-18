@@ -26,6 +26,10 @@ a {
     /*float: left;*/
 }
 
+.hidden {
+    display: none;
+}
+
 .NoIcon {
     margin-left: 1vw;
     width: 1.5vw;
@@ -131,16 +135,34 @@ a {
     margin: 5px;
     border-radius: 5px;
     padding: 5px;
+    transition-timing-function:ease-in-out;
+    transition-duration:3s;
+    transition-delay:1s;
 }
 
-    .LeftMenu:hover {
+.LeftMenuHead {
+    float: none;
+    padding-top: 5%;
+    padding-left: 2%;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+    .LeftMenuHead::first-line {
+        padding-right:5vw;
+        margin-right:5vw;
     }
 
-    .LeftMenu a :link {
-    }
+.LeftMenu:hover {
+}
 
-    .LeftMenu a:hover {
-    }
+.LeftMenu a :link {
+}
+
+.LeftMenu a:hover {
+}
 
 #PagePanel {
     padding: 5px;

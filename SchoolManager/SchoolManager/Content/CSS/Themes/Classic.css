@@ -59,19 +59,27 @@
     color: #0181bb;
 }
 
-    .ThemeLeftMenu:hover {
-        background: white;
-    }
+.ThemeLeftMenuHead {
+    color: #0181bb;
+}
 
-    .ThemeLeftMenu a :link {
-        background-color: #fff;
-        background: #626f80;
-    }
+.LeftMenuHead::first-line {
+    background-color: white;
+}
 
-    .ThemeLeftMenu a:hover {
-        background-color: #fff;
-        background: #3b3c3d;
-    }
+.ThemeLeftMenu:hover {
+    background: white;
+}
+
+.ThemeLeftMenu a :link {
+    background-color: #fff;
+    background: #626f80;
+}
+
+.ThemeLeftMenu a:hover {
+    background-color: #fff;
+    background: #3b3c3d;
+}
 
 .ThemePagePanel {
     border-color: cadetblue;
