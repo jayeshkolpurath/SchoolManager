@@ -57,6 +57,13 @@
 .ThemeLeftMenu{
     color: white;
 }
+.ThemeLeftMenuHead {
+    color: #0181bb;
+}
+
+.LeftMenuHead::first-line {
+    background-color: white;
+}
 
 .ThemeLeftMenu:hover{
     background:grey;
