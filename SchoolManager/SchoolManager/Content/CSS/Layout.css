@@ -136,8 +136,7 @@ a {
     border-radius: 5px;
     padding: 5px;
     transition-timing-function:ease-in-out;
-    transition-duration:3s;
-    transition-delay:1s;
+    transition-duration:1s;
 }
 
 .LeftMenuHead {
