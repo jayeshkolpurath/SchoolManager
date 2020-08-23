@@ -58,7 +58,7 @@ class LayoutController extends ControllerBase {
                     {
                         MenuName: "MasterData", MenuText: "Master Data", SubMenu: [
                             { MenuName: "Departments", MenuText: "Departments", MenuLink: "/Views/Departments.html" },
-                            { MenuName: "Departments", MenuText: "Departments", MenuLink: "/Views/Departments.html" }
+                            { MenuName: "BloodGroups", MenuText: "BloodGroups", MenuLink: "/Views/BloodGroups.html" }
                         ]
                     }
                 ];
