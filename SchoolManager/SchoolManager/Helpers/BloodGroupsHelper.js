@@ -1,12 +1,12 @@
 ﻿'use strict';
-class DepartmentsHelper extends HelperBase {
+class BloodGroupsHelper extends HelperBase {
     constructor(Settings) {
         super(Settings);
     }
     SaveModelCopy(Data) {
         try {
             var objStorage = new StorageHelper();
-            objStorage.Set("DepartmentCopy", JSON.stringify(Data));
+            objStorage.Set("BloodGroupsCopy", JSON.stringify(Data));
         }
         catch (Ex) {
             throw Ex;
@@ -15,7 +15,7 @@ class DepartmentsHelper extends HelperBase {
     GetModelCopy() {
         try {
             var objStorage = new StorageHelper();
-            var RetVal = JSON.parse(objStorage.Get("DepartmentCopy"));
+            var RetVal = JSON.parse(objStorage.Get("BloodGroupsCopy"));
             return RetVal;
         } catch (Ex) {
             throw Ex;
@@ -25,18 +25,18 @@ class DepartmentsHelper extends HelperBase {
         try {
             var Depts = [];
             var i = 1;
-            $("#_lstDepartments").children("._lstRow").each(function () {
+            $("#_lstBloodGroups").children("._lstRow").each(function () {
                 var Id = $(this).find(".RowID").first().val();
                 var DeptCode = $(this).find(".DepCode").first().val();
                 var DeptName = $(this).find(".DepName").first().val();
                 var act = $(this).find(".RowAction").first().val();
                 if (isNaN(Id) || (!isNaN(Id) && act != 'D')) {
-                    var Dept = new DepartmentEntry(Id, DeptCode, DeptName, act);
+                    var Dept = new BloodGroupsEntry(Id, DeptCode, DeptName, act);
                     Depts.push(Dept);
                 }
                 i++;
             });
-            Data.Departments = Depts;
+            Data.BloodGroups = Depts;
         }
         catch (Ex) {
             throw Ex;
@@ -60,7 +60,7 @@ class DepartmentsHelper extends HelperBase {
                 html += "<div><input type='hidden' class='RowAction' id='hdnAction_" + i + "' value='A'/></div>";
                 html += "<div><input type='hidden' class='RowID' id='hdnID_" + i + "' value=''/></div>";
                 html += "</div >";
-                $("#_lstDepartments").append(html);
+                $("#_lstBloodGroups").append(html);
             }
         } catch (Ex) {
             throw Ex;
@@ -109,10 +109,10 @@ class DepartmentsHelper extends HelperBase {
             $("#_btnEdit_" + id).show("slow");
             $("#_btnRefresh_" + id).hide("slow");
             var ModelCopy = this.GetModelCopy();
-            if (id <= ModelCopy.Departments.length) {
-                $("#_txtDepCode_" + id).val(ModelCopy.Departments[id - 1].Code);
-                $("#_txtDepName_" + id).val(ModelCopy.Departments[id - 1].Name);
-                $("#hdnAction_" + id).val(ModelCopy.Departments[id - 1].Action);
+            if (id <= ModelCopy.BloodGroups.length) {
+                $("#_txtDepCode_" + id).val(ModelCopy.BloodGroups[id - 1].Code);
+                $("#_txtDepName_" + id).val(ModelCopy.BloodGroups[id - 1].Name);
+                $("#hdnAction_" + id).val(ModelCopy.BloodGroups[id - 1].Action);
             } else {
                 $("#hdnAction_" + id).val("");
             }
@@ -127,8 +127,8 @@ class DepartmentsHelper extends HelperBase {
             html += "<div class='_lstHead'><div class='FlagsCol'/><div class='DepCode ColHdCode'>Code</div><div class='DepName ColHdName'>Name</div><div class='FlagsCol'/><div class='FlagsCol'/></div>";
             var i = 1;
             var tbIndex = i;            
-            if (Model.Departments != null) {
-                Model.Departments.forEach(element => {
+            if (Model.BloodGroups != null) {
+                Model.BloodGroups.forEach(element => {
                     html += "<div class='_lstRow' id='_lstRow_" + i + "'>";
                     html += "<div class='FlagsCol'><div class='NoIcon' id='_FlagsIcon_" + i + "'/></div>";
                     html += "<div><input type='text' class='_txtText DepCode' readonly='true'  id='_txtDepCode_" + i + "' value='" + element.Code + "' tabindex='" + tbIndex + "'/></div>";
@@ -145,7 +145,7 @@ class DepartmentsHelper extends HelperBase {
             } else {
                 html = "Error!";
             }
-            $("#_lstDepartments").html(html);
+            $("#_lstBloodGroups").html(html);
         }
         catch (Ex) {
             throw Ex;
@@ -167,7 +167,7 @@ class DepartmentsHelper extends HelperBase {
             var depCode = '';
             var depName = '';
             var status = true;
-            $("#_lstDepartments").children("._lstRow").each(function (idx, item) {
+            $("#_lstBloodGroups").children("._lstRow").each(function (idx, item) {
                 if ($(this).find(".DepCode").val() == '' || depCode.includes($(this).find(".DepCode").val() + ',')) {
                     $('#_txtDepCode_' + (idx + 1)).addClass("txtValidationFail");
                     status = false;
@@ -195,11 +195,11 @@ class DepartmentsHelper extends HelperBase {
         try {
             var msg = '';
             var ErrorCount=0;
-            if (data != null && data.Departments != null) {
-                data.Departments.forEach(element => {
+            if (data != null && data.BloodGroups != null) {
+                data.BloodGroups.forEach(element => {
                     if (element.Message != '' && element.Message != null && element.Message != undefined) {   
                         ErrorCount++;
-                        $("#_lstDepartments").children("._lstRow").each(function (idx, item) {
+                        $("#_lstBloodGroups").children("._lstRow").each(function (idx, item) {
                             if ($(this).find(".DepCode").val() == element.code) {
                                 $(this).find(".DepCode").css("color", "red");
                             }
