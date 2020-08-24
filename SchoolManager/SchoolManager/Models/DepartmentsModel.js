@@ -44,8 +44,8 @@ class DepartmentsModel extends ModelBase {
                 data: RequestData,
                 success: function (data) {
                     this.model.#ProcessDepartmentsAPIResponse(data);
-                    if (data.signature != null) {
-                        new StorageHelper().Set("SAAPISessionKey", data.signature);
+                    if (data.Signature != null) {
+                        new StorageHelper().Set("SAAPISessionKey", data.Signature);
                     }
                 },
                 error: function (jqXHR, status, err) {
@@ -59,11 +59,11 @@ class DepartmentsModel extends ModelBase {
     }
     #ProcessDepartmentsAPIResponse(data) {
         try {
-            if (data != null && data.departments != null) {
+            if (data != null && data.Departments != null) {
                 this.Departments = [];
-                data.departments.forEach(element => {
-                    if ((element.action == 'D' && element.message != '') || element.action != 'D') {
-                        var Dept = new DepartmentEntry(element.id, element.code, element.name, element.action, element.message);
+                data.Departments.forEach(element => {
+                    if ((element.Action == 'D' && element.Message != '') || element.Action != 'D') {
+                        var Dept = new DepartmentEntry(element.Id, element.Code, element.Name, element.Action, element.Message);
                         this.Departments.push(Dept);
                     }
                 });

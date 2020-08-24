@@ -49,8 +49,8 @@
     }
 
     #ProcessResponse(data) {
-        if (data.code == "200") {
-            this.SessionKey = data.signature;  // Success
+        if (data.Code == "200") {
+            this.SessionKey = data.Signature;  // Success
         }
     }
 
