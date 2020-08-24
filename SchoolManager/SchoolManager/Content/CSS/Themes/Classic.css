@@ -27,8 +27,7 @@
 }
 
 .ThemeTopPanel {
-    background: #027876;
-    box-shadow: #e2e2e2;
+    background-color: #dce0db;
 }
 
 .ThemeTopMenu a:hover {
@@ -42,7 +41,8 @@
 }
 
 .ThemeTopMenu {
-    color: white;
+    color: #131212;
+    font-family: 'Times New Roman', Times, serif;
 }
 
     .ThemeTopMenu:hover {
@@ -51,16 +51,18 @@
     }
 
 .ThemeLeftPanel {
-    background-color: #326b4a;
-    background: #e2e2e2;
+    background-color: #027876;
 }
 
-.ThemeLeftMenu {
-    color: #0181bb;
+.ThemeLeftMenu {   
+    text-align:left;
+    color: #ffffff;
+    font-family:'Times New Roman', Times, serif;
 }
 
     .ThemeLeftMenu:hover {
-        background: white;
+        background: #dce0db;
+        color: #131212;
     }
 
     .ThemeLeftMenu a :link {
