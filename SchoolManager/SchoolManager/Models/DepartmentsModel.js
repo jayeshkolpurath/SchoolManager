@@ -47,6 +47,7 @@ class DepartmentsModel extends ModelBase {
                     this.model.#ProcessDepartmentsAPIResponse(Data);
                     if (Data.signature != null) {
                         new StorageHelper().Set("SAAPISessionKey", Data.Signature);
+
                     }
                 },
                 error: function (jqXHR, status, err) {
@@ -60,6 +61,7 @@ class DepartmentsModel extends ModelBase {
     }
     #ProcessDepartmentsAPIResponse(Data) {
         try {
+
             if (Data != null && Data.Departments != null) {
                 this.Departments = [];
                 Data.Departments.forEach(element => {

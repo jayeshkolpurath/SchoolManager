@@ -27,8 +27,7 @@
 }
 
 .ThemeTopPanel {
-    background: #027876;
-    box-shadow: #e2e2e2;
+    background-color: #dce0db;
 }
 
 .ThemeTopMenu a:hover {
@@ -42,7 +41,8 @@
 }
 
 .ThemeTopMenu {
-    color: white;
+    color: #131212;
+    font-family: 'Times New Roman', Times, serif;
 }
 
     .ThemeTopMenu:hover {
@@ -51,35 +51,29 @@
     }
 
 .ThemeLeftPanel {
-    background-color: #326b4a;
-    background: #e2e2e2;
+    background-color: #027876;
 }
 
 .ThemeLeftMenu {
-    color: #0181bb;
+    text-align: left;
+    color: #ffffff;
+    font-family: 'Times New Roman', Times, serif;
 }
 
-.ThemeLeftMenuHead {
-    color: #0181bb;
-}
+    .ThemeLeftMenu:hover {
+        background: #dce0db;
+        color: #131212;
+    }
 
-.LeftMenuHead::first-line {
-    background-color: white;
-}
+    .ThemeLeftMenu a :link {
+        background-color: #fff;
+        background: #626f80;
+    }
 
-.ThemeLeftMenu:hover {
-    background: white;
-}
-
-.ThemeLeftMenu a :link {
-    background-color: #fff;
-    background: #626f80;
-}
-
-.ThemeLeftMenu a:hover {
-    background-color: #fff;
-    background: #3b3c3d;
-}
+    .ThemeLeftMenu a:hover {
+        background-color: #fff;
+        background: #3b3c3d;
+    }
 
 .ThemePagePanel {
     border-color: cadetblue;

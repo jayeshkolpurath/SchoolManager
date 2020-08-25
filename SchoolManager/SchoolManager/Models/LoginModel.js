@@ -51,6 +51,7 @@
     #ProcessResponse(Data) {
         if (Data.Code == "200") {
             this.SessionKey = Data.Signature;  // Success
+
         }
     }
 
