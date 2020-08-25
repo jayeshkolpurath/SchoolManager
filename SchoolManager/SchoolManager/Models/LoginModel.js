@@ -35,8 +35,8 @@
                 async: false,
                 timeout: this.Settings.APITimeOut,
                 data: Payload,
-                success: function (data) {
-                    this.model.#ProcessResponse(data);
+                success: function (Data) {
+                    this.model.#ProcessResponse(Data);
                 },
                 error: function (jqXHR, status, err) {
                     this.SessionKey = null;
@@ -48,14 +48,14 @@
         }
     }
 
-    #ProcessResponse(data) {
-        if (data.code == "200") {
-            this.SessionKey = data.signature;  // Success
+    #ProcessResponse(Data) {
+        if (Data.Code == "200") {
+            this.SessionKey = Data.Signature;  // Success
         }
     }
 
     #CreateGetRequest(UID, Pwd) {
-        var st = { name: UID, password: Pwd };
+        var st = { Name: UID, Password: Pwd };
         return st;
     }
 

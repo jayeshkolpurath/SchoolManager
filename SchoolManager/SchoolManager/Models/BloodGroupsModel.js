@@ -42,10 +42,10 @@ class BloodGroupsModel extends ModelBase {
                 async: false,
                 timeout: this.Settings.APITimeOut,
                 data: RequestData,
-                success: function (data) {
-                    this.model.#ProcessBloodGroupsAPIResponse(data);
-                    if (data.signature != null) {
-                        new StorageHelper().Set("SAAPISessionKey", data.signature);
+                success: function (Data) {
+                    this.model.#ProcessBloodGroupsAPIResponse(Data);
+                    if (Data.Signature != null) {
+                        new StorageHelper().Set("SAAPISessionKey", Data.Signature);
                     }
                 },
                 error: function (jqXHR, status, err) {
@@ -57,14 +57,14 @@ class BloodGroupsModel extends ModelBase {
             throw Ex;
         }
     }
-    #ProcessBloodGroupsAPIResponse(data) {
+    #ProcessBloodGroupsAPIResponse(Data) {
         try {
-            if (data != null && data.bloodgroups != null) {
+            if (Data != null && Data.BloodGroups != null) {
                 this.BloodGroups = [];
                 
-                data.bloodgroups.forEach(element => {
-                    if ((element.action == 'D' && element.message != '') || element.action != 'D') {
-                        var Bg = new BloodGroupsEntry(element.id, element.code, element.name, element.action, element.message);
+                Data.BloodGroups.forEach(element => {
+                    if ((element.Action == 'D' && element.Message != '') || element.Action != 'D') {
+                        var Bg = new BloodGroupsEntry(element.Id, element.Code, element.Name, element.Action, element.Message);
                         this.BloodGroups.push(Bg);
                     }
                 });
@@ -92,7 +92,7 @@ class BloodGroupsModel extends ModelBase {
                 "BloodGroups": []
             };
             this.BloodGroups.forEach(element => {
-                Req.BloodGroups.push({ id: element.ID, code: element.Code, name: element.Name, action: element.Action });
+                Req.BloodGroups.push({ Id: element.ID, Code: element.Code, Name: element.Name, Action: element.Action });
             });
             return Req;
         } catch (Ex) {

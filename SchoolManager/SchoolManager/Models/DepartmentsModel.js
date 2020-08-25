@@ -31,6 +31,7 @@ class DepartmentsModel extends ModelBase {
             var AuthHeaderValue = "Bearer " + new StorageHelper().Get("SAAPISessionKey");
             var ContentLength = RequestData.length;
             var Response = null;
+            console.log("Call :" + JSON.stringify(RequestData));
             $.ajax({
                 type: "POST",
                 url: APIURL,
@@ -42,10 +43,10 @@ class DepartmentsModel extends ModelBase {
                 async: false,
                 timeout: this.Settings.APITimeOut,
                 data: RequestData,
-                success: function (data) {
-                    this.model.#ProcessDepartmentsAPIResponse(data);
-                    if (data.signature != null) {
-                        new StorageHelper().Set("SAAPISessionKey", data.signature);
+                success: function (Data) {
+                    this.model.#ProcessDepartmentsAPIResponse(Data);
+                    if (Data.signature != null) {
+                        new StorageHelper().Set("SAAPISessionKey", Data.Signature);
                     }
                 },
                 error: function (jqXHR, status, err) {
@@ -57,13 +58,13 @@ class DepartmentsModel extends ModelBase {
             throw Ex;
         }
     }
-    #ProcessDepartmentsAPIResponse(data) {
+    #ProcessDepartmentsAPIResponse(Data) {
         try {
-            if (data != null && data.departments != null) {
+            if (Data != null && Data.Departments != null) {
                 this.Departments = [];
-                data.departments.forEach(element => {
-                    if ((element.action == 'D' && element.message != '') || element.action != 'D') {
-                        var Dept = new DepartmentEntry(element.id, element.code, element.name, element.action, element.message);
+                Data.Departments.forEach(element => {
+                    if ((element.Action == 'D' && element.Message != '') || element.Action != 'D') {
+                        var Dept = new DepartmentEntry(element.Id, element.Code, element.Name, element.Action, element.Message);
                         this.Departments.push(Dept);
                     }
                 });
@@ -91,7 +92,7 @@ class DepartmentsModel extends ModelBase {
                 "Departments": []
             };
             this.Departments.forEach(element => {
-                Req.Departments.push({ id: element.ID, code: element.Code, name: element.Name, action: element.Action });
+                Req.Departments.push({ Id: element.ID, Code: element.Code, Name: element.Name, Action: element.Action });
             });
             return Req;
         } catch (Ex) {
