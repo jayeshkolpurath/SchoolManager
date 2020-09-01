@@ -58,7 +58,9 @@ class LayoutController extends ControllerBase {
                     {
                         MenuName: "MasterData", MenuText: "Master Data", SubMenu: [
                             { MenuName: "Departments", MenuText: "Departments", MenuLink: "/Views/Departments.html" },
-                            { MenuName: "BloodGroups", MenuText: "BloodGroups", MenuLink: "/Views/BloodGroups.html" }
+                            { MenuName: "BloodGroups", MenuText: "BloodGroups", MenuLink: "/Views/BloodGroups.html" },
+                            { MenuName: "Countries", MenuText: "Countries", MenuLink: "/Views/Countries.html" },
+                            { MenuName: "States", MenuText: "States", MenuLink: "/Views/States.html"}
                         ]
                     }
                 ];
@@ -144,7 +146,7 @@ function ThemeSelect(ThemeName) {
         $("#PopupBox").hide();
         window.location = "/Views/Layout.html";
     } catch (Ex) {
-        new LogHelper(this.Settings).LogError("ThemeSelect", Ex);
+        throw Ex;
     }
 }
 var MenuItems;
@@ -161,7 +163,7 @@ function MenuClick(e) {
 
         $("#LeftPanel").show();
     } catch (Ex) {
-        new LogHelper(e.data.Settings).LogError("MenuClick", Ex);
+        throw Ex;
     }
 }
 
@@ -172,22 +174,22 @@ function GenerateMenuItems(Element, Parent, Pos, Level, Suffix, Settings) {
         var eID = "LeftMenu" + Suffix + "_" + Level + "" + Pos;
         if (typeof Element.SubMenu !== 'undefined') {
             Nm = $("<div>", { id: eID, class: "LeftMenuHead ThemeLeftMenuHead ", style: DisplayStyle, text: Element.MenuText });
-            Nm.on("click", { MenuItem: Element, Settings: Settings, ID: eID  }, SubMenuClick);
+            Nm.on("click", { MenuItem: Element, Settings: Settings, ID: eID }, SubMenuClick);
             var j = 1;
             Element.SubMenu.forEach(elm => {
-                GenerateMenuItems(elm, Nm, j, Level+1, Suffix + "_" + Level + "" +Pos , Settings);
+                GenerateMenuItems(elm, Nm, j, Level + 1, Suffix + "_" + Level + "" + Pos, Settings);
                 j++;
             });
             Parent.append(Nm);
         }
         else {
             Nm = $("<div>", { id: "LeftMenu" + Suffix + "_" + Level + "" + Pos, class: "LeftMenu ThemeLeftMenu ", style: DisplayStyle, text: Element.MenuText });
-            Nm.on("click", { MenuItem: Element, Settings: Settings, ID: eID  }, SubMenuClick);
+            Nm.on("click", { MenuItem: Element, Settings: Settings, ID: eID }, SubMenuClick);
             Parent.append(Nm);
         }
     }
     catch (Ex) {
-        new LogHelper(Settings).LogError("GenerateMenuItems", Ex);
+        throw Ex;
     }
 }
 
@@ -201,10 +203,10 @@ function SubMenuClick(e) {
             });
         } else {
             var MenuItem = e.data.MenuItem;
-            LoadContentPage("PagePanel", e.data.MenuItem.MenuLink, e.data.MenuItem.MenuName);
+            LoadContentPage("PagePanel", e.data.MenuItem.MenuLink, e.data.MenuItem.MenuName, e.data.MenuItem.RefURLs);
         }
     } catch (Ex) {
-        new LogHelper(e.data.Settings).LogError("SubMenuClick", Ex);
+        throw Ex;
     }
     return false;
 }
@@ -219,46 +221,23 @@ function LoadTheme(Ctrl) {
         cssFile.href = ThemeUTL;
         document.head.appendChild(cssFile);
     } catch (Ex) {
-        new LogHelper(this.Settings).LogError("LoadTheme", Ex);
+        throw Ex;
     }
 }
 
 function LoadContentPage(Location, ContentHTMLPageURL, ControllerName) {
     try {
+        var objScriptComponent = new ScriptComponent();
         $("#" + Location).load(ContentHTMLPageURL);
-        LoadScripts(ControllerName);
-        LoadCSS(ControllerName);
+        objScriptComponent.LoadScripts(ControllerName); //Loading files Controller, Model and Helper(if not already loaded)
+        objScriptComponent.LoadCSS(ControllerName);
         var fn = "Render" + ControllerName + "Page()";
-        setTimeout(fn, 10);
+        setTimeout(fn, 10); //Call partial page rendering from the controller
     } catch (Ex) {
-        new LogHelper(this.Settings).LogError("LoadContentPage", Ex);
+        throw Ex;
     }
 }
 
-function LoadScripts(ControllerName) {
-    try {
-        var ScriptURLs = [{ Name: "Helper" }, { Name: "Model" }, { Name: "Controller" }];
-        ScriptURLs.forEach(element => {
-            var URL = "../" + element.Name + "s/" + ControllerName + element.Name + ".js";
-            if (!$("script[src='" + URL + "']").length) {
-                $('<script src="' + URL + '" type="text/javascript"></script>').appendTo("head");
-            }
-        });
-    } catch (Ex) {
-        new LogHelper(this.Settings).LogError("LoadScripts", Ex);
-    }
-}
-
-function LoadCSS(ControllerName) {
-    try {
-        var URL = "/Content/CSS/" + ControllerName + ".css";
-        if (!$("link[href='" + URL + "']").length) {
-            $('<link href="' + URL + '" rel="stylesheet">').appendTo("head");
-        }
-    } catch (Ex) {
-        new LogHelper(this.Settings).LogError("LoadCSS", Ex);
-    }
-}
 
 
 

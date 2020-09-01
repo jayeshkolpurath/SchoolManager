@@ -46,5 +46,18 @@ class ControllerBase {
         objStorage.Set("SASessionID", "");
         objStorage.Delete("SASessionID");
     }
+
+    LoadScriptFiles(objReq) {
+        try {
+            var objScriptComponent = new ScriptComponent();
+            if (objReq != null && objReq.RefURLs!= null)
+            objReq.RefURLs.forEach(element => {
+                objScriptComponent.LoadScript(element.URL);
+            });
+        }
+        catch (Ex) {
+            throw Ex;
+        }
+    }
 }
 

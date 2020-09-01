@@ -1,12 +1,12 @@
 ﻿'use strict';
-class BloodGroupsHelper extends HelperBase {
+class StatesHelper extends HelperBase {
     constructor(Settings) {
         super(Settings);
     }
     SaveModelCopy(Data) {
         try {
             var objStorage = new StorageHelper();
-            objStorage.Set("BloodGroupsCopy", JSON.stringify(Data));
+            objStorage.Set("StateCopy", JSON.stringify(Data));
         }
         catch (Ex) {
             throw Ex;
@@ -15,7 +15,7 @@ class BloodGroupsHelper extends HelperBase {
     GetModelCopy() {
         try {
             var objStorage = new StorageHelper();
-            var RetVal = JSON.parse(objStorage.Get("BloodGroupsCopy"));
+            var RetVal = JSON.parse(objStorage.Get("StateCopy"));
             return RetVal;
         } catch (Ex) {
             throw Ex;
@@ -23,44 +23,54 @@ class BloodGroupsHelper extends HelperBase {
     }
     SaveData(Data) {
         try {
-            var Items = [];
+            var States = [];
             var i = 1;
-            $("#_lstBloodGroups").children("._lstRow").each(function () {
+            $("#_lstStates").children("._lstRow").each(function () {
                 var Id = $(this).find(".RowID").first().val();
-                var Code = $(this).find(".BGCode").first().val();
-                var Name = $(this).find(".BGName").first().val();
+                var StateCode = $(this).find(".StateCode").first().val();
+                var StateName = $(this).find(".StateName").first().val();
+                var CountryCode = $(this).find(".CountryCode").first().val();
                 var act = $(this).find(".RowAction").first().val();
                 if (isNaN(Id) || (!isNaN(Id) && act != 'D')) {
-                    var Item = new BloodGroupsEntry(Id, Code, Name, act);
-                    Items.push(Item);
+                    var State = new StateEntry(Id, StateCode, StateName, CountryCode, act);
+                    States.push(State);
                 }
                 i++;
             });
-            Data.BloodGroups = Items;
+            Data.States = States;
         }
         catch (Ex) {
             throw Ex;
         }
     }
-    AddRow() {
+    AddRow(CountriesModel) {
         try {
             var i = $("[id^=_lstRow]").length;
             //row wise textbox count
             var cnt = 2;
             var tabIdx = (i * cnt) + 1;
-            if ($("#_txtBGCode_" + i).val().trim() !== '' && $("#_txtBGName_" + i).val().trim() !== '') {
+            var stCountryOptions = ""
+            if (CountriesModel !== null && CountriesModel.Countries !== null) {
+                CountriesModel.Countries.forEach(element => {
+                    stCountryOptions += "<option value='" + element.Code + "'>" + element.Name + "</option>";
+                });
+            }
+            
+            if ($("#_txtStateCode_" + i).val().trim() !== '' && $("#_txtStateName_" + i).val().trim() !== '') {
                 i++;
                 var html = "<div class='_lstRow' id='_lstRow_" + i + "'>";
                 html += "<div class='FlagsCol'><div class='NoIcon' id='_FlagsIcon_" + i + "'/></div>";
-                html += "<div><input type='text' class='_txtText BGCode' id='_txtBGCode_" + i + "' value='' tabindex='" + tabIdx + "'/></div>";
-                html += "<div><input type='text' class='_txtText BGName' id='_txtBGName_" + i + "' value='' tabindex='" + (tabIdx + 1) + "' /></div>";
+                html += "<div><input type='text' class='_txtText StateCode' id='_txtStateCode_" + i + "' value='' tabindex='" + tabIdx + "'/></div>";
+                html += "<div><select class='CountryCode' id='_ddlCountryCode_" + i + "' value='' tabindex='" + tabIdx + "'>";
+                html += stCountryOptions + "</select></div> ";
+                html += "<div><input type='text' class='_txtText StateName' id='_txtStateName_" + i + "' value='' tabindex='" + (tabIdx + 1) + "' /></div>";
                 html += "<div class='FlagsCol'><div class='_btnEdit Button' style='display:none;' id='_btnEdit_" + i + "' title='Edit'/></div>";
                 html += "<div class='FlagsCol'><div class='_btnDelete Button' id='_btnDelete_" + i + "' title='Delete'/></div>";
                 html += "<div class='FlagsCol'><div class='_btnRefresh Button' style='display:none;' id='_btnRefresh_" + i + "' title='Refresh' /></div>";
                 html += "<div><input type='hidden' class='RowAction' id='hdnAction_" + i + "' value='A'/></div>";
                 html += "<div><input type='hidden' class='RowID' id='hdnID_" + i + "' value=''/></div>";
                 html += "</div >";
-                $("#_lstBloodGroups").append(html);
+                $("#_lstStates").append(html);
             }
         } catch (Ex) {
             throw Ex;
@@ -69,8 +79,8 @@ class BloodGroupsHelper extends HelperBase {
     EditRow(ElementID) {
         try {
             var id = ElementID.split("_").slice(-1)[0];
-            $("#_txtBGCode_" + id).prop("readonly", false);
-            $("#_txtBGName_" + id).attr("readonly", false);
+            $("#_txtStateCode_" + id).prop("readonly", false);
+            $("#_txtStateName_" + id).attr("readonly", false);
             $("#_FlagsIcon_" + id).addClass("EditedIcon");
             $("#_btnEdit_" + id).hide("slow");
             $("#_btnRefresh_" + id).show("slow");
@@ -79,11 +89,12 @@ class BloodGroupsHelper extends HelperBase {
             throw Ex;
         }
     }
+
     DeleteRow(ElementID) {
         try {
             var id = ElementID.split("_").slice(-1)[0];
             if (!isNaN($("#hdnID_" + id).val())) {
-                if ($("#_txtBGCode_" + id).val().trim() == '' || $("#_txtBGName_" + id).val().trim() == '') {
+                if ($("#_txtStateCode_" + id).val().trim() == '' || $("#_txtStateName_" + id).val().trim() == '') {
                     return false;
                 }
             }
@@ -102,17 +113,17 @@ class BloodGroupsHelper extends HelperBase {
             var id = ElementID.split("_").slice(-1)[0];
             $("#_FlagsIcon_" + id).removeClass("DeletedIcon EditedIcon");
             if (isNaN($("#hdnID_" + id).val())) {
-                $("#_txtBGCode_" + id).prop("readonly", true);
-                $("#_txtBGName_" + id).attr("readonly", true);
+                $("#_txtStateCode_" + id).prop("readonly", true);
+                $("#_txtStateName_" + id).attr("readonly", true);
             }
             $("#_btnDelete_" + id).show("slow");
             $("#_btnEdit_" + id).show("slow");
             $("#_btnRefresh_" + id).hide("slow");
             var ModelCopy = this.GetModelCopy();
-            if (id <= ModelCopy.BloodGroups.length) {
-                $("#_txtBGCode_" + id).val(ModelCopy.BloodGroups[id - 1].Code);
-                $("#_txtBGName_" + id).val(ModelCopy.BloodGroups[id - 1].Name);
-                $("#hdnAction_" + id).val(ModelCopy.BloodGroups[id - 1].Action);
+            if (id <= ModelCopy.States.length) {
+                $("#_txtStateCode_" + id).val(ModelCopy.States[id - 1].Code);
+                $("#_txtStateName_" + id).val(ModelCopy.States[id - 1].Name);
+                $("#hdnAction_" + id).val(ModelCopy.States[id - 1].Action);
             } else {
                 $("#hdnAction_" + id).val("");
             }
@@ -121,18 +132,28 @@ class BloodGroupsHelper extends HelperBase {
             throw Ex;
         }
     }
-    PopulatePageControls(Model) {
+    PopulatePageControls(Model,CountriesModel) {
         try {
             var html = "";
-            html += "<div class='_lstHead'><div class='FlagsCol'/><div class='BGCode ColHdCode'>Code</div><div class='BGName ColHdName'>Name</div><div class='FlagsCol'/><div class='FlagsCol'/></div>";
+            html += "<div class='_lstHead'><div class='FlagsCol'/><div class='StateCode ColHdCode'>Code</div><div class='StateName ColHdName'>Name</div><div class='FlagsCol'/><div class='FlagsCol'/></div>";
             var i = 1;
-            var tbIndex = i;            
-            if (Model.BloodGroups != null) {
-                Model.BloodGroups.forEach(element => {
+            var tbIndex = i;     
+            var stCountryOptions=""
+            if (CountriesModel !== null && CountriesModel.Countries !== null) {
+                CountriesModel.Countries.forEach(element => {
+                    stCountryOptions += "<option value='" + element.Code + "'>" + element.Name +"</option>";
+                });
+            }
+
+            if (Model != null && Model.States != null) {
+                Model.States.forEach(element => {
                     html += "<div class='_lstRow' id='_lstRow_" + i + "'>";
                     html += "<div class='FlagsCol'><div class='NoIcon' id='_FlagsIcon_" + i + "'/></div>";
-                    html += "<div><input type='text' class='_txtText BGCode' readonly='true'  id='_txtBGCode_" + i + "' value='" + element.Code + "' tabindex='" + tbIndex + "'/></div>";
-                    html += "<div><input type='text' class='_txtText BGName' readonly='true' id='_txtBGName_" + i + "' value='" + element.Name + "' tabindex='" + (tbIndex + 1) + "' /></div>";
+                    html += "<div><input type='text' class='_txtText StateCode' readonly='true'  id='_txtStateCode_" + i + "' value='" + element.Code + "' tabindex='" + tbIndex + "'/></div>";
+                    html += "<div><select class='CountryCode' id='_ddlCountryCode_" + i + "' value='" + element.CountryCode + "' tabindex='" + tbIndex + "'>";
+                    var opt = stCountryOptions.replace("value='" + element.CountryCode + "'", "value='" + element.CountryCode + "' selected='selected'");
+                    html += opt + "</select></div> ";
+                    html += "<div><input type='text' class='_txtText StateName' readonly='true' id='_txtStateName_" + i + "' value='" + element.Name + "' tabindex='" + (tbIndex + 1) + "' /></div>";
                     html += "<div class='FlagsCol'><div class='_btnEdit Button' id='_btnEdit_" + i + "' title='Edit'/></div>";
                     html += "<div class='FlagsCol'><div class='_btnDelete Button' id='_btnDelete_" + i + "' title='Delete'/></div>";
                     html += "<div class='FlagsCol'><div class='_btnRefresh Button'  style='display:none;' id='_btnRefresh_" + i + "' title='Refresh' /></div>";
@@ -145,7 +166,7 @@ class BloodGroupsHelper extends HelperBase {
             } else {
                 html = "Error!";
             }
-            $("#_lstBloodGroups").html(html);
+            $("#_lstStates").html(html);
         }
         catch (Ex) {
             throw Ex;
@@ -155,8 +176,8 @@ class BloodGroupsHelper extends HelperBase {
     TxtFocusOut(ElementID) {
         try {
             var id = ElementID.split("_").slice(-1)[0];
-            ($("#_txtBGCode_" + id).val().trim() == '') ? $("#_txtBGCode_" + id).addClass("txtValidationFail") : $("#_txtBGCode_" + id).removeClass("txtValidationFail");
-            ($("#_txtBGName_" + id).val().trim() == '') ? $("#_txtBGName_" + id).addClass("txtValidationFail") : $("#_txtBGName_" + id).removeClass("txtValidationFail");
+            ($("#_txtStateCode_" + id).val().trim() == '') ? $("#_txtStateCode_" + id).addClass("txtValidationFail") : $("#_txtStateCode_" + id).removeClass("txtValidationFail");
+            ($("#_txtStateName_" + id).val().trim() == '') ? $("#_txtStateName_" + id).addClass("txtValidationFail") : $("#_txtStateName_" + id).removeClass("txtValidationFail");
         }
         catch (Ex) {
             throw Ex;
@@ -164,25 +185,25 @@ class BloodGroupsHelper extends HelperBase {
     }
     ValidateData() {
         try {           
-            var Code = '';
-            var Name = '';
+            var StateCode = '';
+            var StateName = '';
             var status = true;
-            $("#_lstBloodGroups").children("._lstRow").each(function (idx, item) {
-                if ($(this).find(".BGCode").val() == '' || Code.includes($(this).find(".BGCode").val() + ',')) {
-                    $('#_txtBGCode_' + (idx + 1)).addClass("txtValidationFail");
+            $("#_lstStates").children("._lstRow").each(function (idx, item) {
+                if ($(this).find(".StateCode").val() == '' || StateCode.includes($(this).find(".StateCode").val() + ',')) {
+                    $('#_txtStateCode_' + (idx + 1)).addClass("txtValidationFail");
                     status = false;
                 }
                 else {
-                    $('#_txtBGCode_' + (idx + 1)).removeClass("txtValidationFail");
-                    Code += $(this).find(".BGCode").first().val() + ',';
+                    $('#_txtStateCode_' + (idx + 1)).removeClass("txtValidationFail");
+                    StateCode += $(this).find(".StateCode").first().val() + ',';
                 }
-                if ($(this).find(".BGName").val() == '' || Name.includes(($(this).find(".BGName").val()))) {
-                    $('#_txtBGName_' + (idx + 1)).addClass("txtValidationFail");
+                if ($(this).find(".StateName").val() == '' || StateName.includes(($(this).find(".StateName").val()))) {
+                    $('#_txtStateName_' + (idx + 1)).addClass("txtValidationFail");
                     status = false;
                 }
                 else {
-                    $('#_txtBGName_' + (idx + 1)).removeClass("txtValidationFail");
-                    Name += $(this).find(".BGName").first().val() + ',';
+                    $('#_txtStateName_' + (idx + 1)).removeClass("txtValidationFail");
+                    StateName += $(this).find(".StateName").first().val() + ',';
                 }
             });
             return status;
@@ -195,13 +216,13 @@ class BloodGroupsHelper extends HelperBase {
         try {
             var msg = '';
             var ErrorCount=0;
-            if (data != null && data.BloodGroups != null) {
-                data.BloodGroups.forEach(element => {
+            if (data != null && data.States != null) {
+                data.States.forEach(element => {
                     if (element.Message != '' && element.Message != null && element.Message != undefined) {   
                         ErrorCount++;
-                        $("#_lstBloodGroups").children("._lstRow").each(function (idx, item) {
-                            if ($(this).find(".BGCode").val() == element.code) {
-                                $(this).find(".BGCode").css("color", "red");
+                        $("#_lstStates").children("._lstRow").each(function (idx, item) {
+                            if ($(this).find(".StateCode").val() == element.code) {
+                                $(this).find(".StateCode").css("color", "red");
                             }
                         });
                         msg += '<div>' + element.ID + ' : ' + element.Message + '</div>';

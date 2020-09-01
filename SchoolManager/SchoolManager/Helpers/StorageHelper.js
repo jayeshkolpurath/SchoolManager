@@ -1,5 +1,5 @@
 ﻿class StorageHelper {
-    constructor(StorageType) {  //local or session
+    constructor(StorageType = null) {  //local or session; default value is null- means Session Storage
         try {
             if (StorageType != null && StorageType.toLowerCase() == "local") {
                 this.Storage = localStorage;

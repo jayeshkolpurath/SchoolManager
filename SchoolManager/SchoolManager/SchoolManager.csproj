@@ -106,12 +106,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="Components\ScriptComponent.js" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CSS\BloodGroups.css" />
+    <Content Include="Content\CSS\Countries.css" />
+    <Content Include="Content\CSS\States.css" />
     <Content Include="Content\CSS\Departments.css" />
     <Content Include="Content\CSS\FeesCollection.css" />
     <Content Include="Content\CSS\General.css" />
@@ -136,6 +139,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Controllers\ControllerBase.js" />
     <Content Include="Controllers\BloodGroupsController.js" />
+    <Content Include="Controllers\CountriesController.js" />
+    <Content Include="Controllers\StatesController.js" />
     <Content Include="Controllers\DepartmentsController.js" />
     <Content Include="Controllers\FeesCollectionController.js" />
     <Content Include="Controllers\GalleryController.js" />
@@ -159,6 +164,8 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Helpers\BloodGroupsHelper.js" />
+    <Content Include="Helpers\CountriesHelper.js" />
+    <Content Include="Helpers\StatesHelper.js" />
     <Content Include="Helpers\HomeHelper.js" />
     <Content Include="Helpers\DepartmentsHelper.js" />
     <Content Include="Helpers\GeneralHelper.js" />
@@ -169,6 +176,8 @@
     <Content Include="Helpers\StorageHelper.js" />
     <Content Include="Images\Loader\ball.gif" />
     <Content Include="Models\BloodGroupsModel.js" />
+    <Content Include="Models\CountriesModel.js" />
+    <Content Include="Models\StatesModel.js" />
     <Content Include="Models\HomeModel.js" />
     <Content Include="Models\DepartmentsModel.js" />
     <Content Include="Models\ModelBase.js" />
@@ -205,8 +214,9 @@
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Views\BloodGroups.html" />
+    <Content Include="Views\Countries.html" />
+    <Content Include="Views\States.html" />
     <Content Include="Views\Departments.html" />
-    <Content Include="Views\FeesCollection copy.html" />
     <Content Include="Views\FeesCollection.html" />
     <Content Include="Views\Gallery.html" />
     <Content Include="Views\Home.html" />

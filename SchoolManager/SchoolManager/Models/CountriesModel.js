@@ -1,8 +1,8 @@
 ﻿'use strict';
 class CountriesModel extends ModelBase {
     Countries = [];
-    constructor(Settings) {
-        super(Settings);
+    constructor(Settings,Request) {
+        super(Settings,Request);
     }
 
     GetCountries() {
@@ -28,7 +28,8 @@ class CountriesModel extends ModelBase {
     #DoRemoteCountriesAPICall(RequestData) {
         try {
             var APIURL = this.Settings.APIURL + "/admin/ManageCountry";
-            var AuthHeaderValue = "Bearer " + new StorageHelper().Get("SAAPISessionKey");
+            var AuthHeaderValue = "Bearer " + this.Request.Signature;
+            console.log(AuthHeaderValue);
             var ContentLength = RequestData.length;
             var Response = null;
             $.ajax({
@@ -44,9 +45,6 @@ class CountriesModel extends ModelBase {
                 data: RequestData,
                 success: function (data) {
                     this.model.#ProcessCountriesAPIResponse(data);
-                    if (data.signature != null) {
-                        new StorageHelper().Set("SAAPISessionKey", data.signature);
-                    }
                 },
                 error: function (jqXHR, status, err) {
 
@@ -60,6 +58,9 @@ class CountriesModel extends ModelBase {
     #ProcessCountriesAPIResponse(Data) {
         try {      
             this.Countries = [];
+            if (Data.signature != null) {
+                this.Response = {Signature : Data.signature};
+            }
             if (Data != null && Data.Countries != null) {                
                 Data.Countries.forEach(element => {
                     if ((element.Action == 'D' && element.Message != '') || element.Action != 'D') {

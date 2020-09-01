@@ -31,7 +31,7 @@
     margin-left: 2vw;
 }
 
-#_lstBloodGroups {
+#_lstStates {
     padding: 1vw 1vw .5vw 1vw;
     display: flex;
     flex-direction: column;
@@ -62,6 +62,14 @@
     float: left;
 }
 
+#_btnRefreshCache {
+    margin-left: 1vw;
+    width: 1.5vw;
+    background: url('/Content/Image/Refresh.jpg');
+    height: 1.5vw;
+    background-size: 1.5vw;
+    float: left;
+}
 ._btnDelete {
     /*float: left;*/
     width: 1.5vw;
@@ -96,7 +104,7 @@
     margin-left: 4.5vw;
 }
 
-.BGName {
+.StateName {
     float: left;
     width: 40vw;
 }
@@ -106,7 +114,7 @@
 #_saveSuccess {
     display: none;
 }
-.BGCode {
+.StateCode {
     float: left;
     width: 10vw;
 }
