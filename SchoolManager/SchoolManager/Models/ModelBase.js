@@ -1,10 +1,12 @@
 ﻿class ModelBase {
-    constructor(Settings) {
+    constructor(Settings,Request) {
         this.Settings = Settings;
+        this.Response = null;
+        this.Request = Request;
     }
-    LogException(Remarks,MethodName,ClassName,TUI) {
+    LogException(Remarks, MethodName, ClassName, TUI) {
         try {
-                        var Req = JSON.stringify(this.#CreateExceptionRequest(Remarks, MethodName, ClassName, TUI));
+            var Req = JSON.stringify(this.#CreateExceptionRequest(Remarks, MethodName, ClassName, TUI));
             this.#DoRemoteExceptioAPICall(Req);
         } catch (Ex) {
             throw Ex;
@@ -16,7 +18,7 @@
             var Req = {
                 "eventlogs": []
             };
-            Req.eventlogs.push({ Remarks: Remarks, MethodName: MethodName, ClassName: ClassName, TUI: TUI , action : 'A'});
+            Req.eventlogs.push({ Remarks: Remarks, MethodName: MethodName, ClassName: ClassName, TUI: TUI, action: 'A' });
             return Req;
         } catch (Ex) {
             throw Ex;

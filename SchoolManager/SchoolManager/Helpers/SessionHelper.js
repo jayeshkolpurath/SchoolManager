@@ -24,6 +24,17 @@
         }
     }
 
+    Get(Key) {
+        try {
+            var objStorage = new StorageHelper();
+            var Result = objStorage.Get(Key);
+            return Result;
+        }
+        catch (Ex) {
+            throw Ex;
+        }
+    }
+
     RemoveUserSession() {
         try {
             var objStorage = new StorageHelper();

@@ -62,7 +62,7 @@ class BloodGroupsController extends ControllerBase {
         try {
             $("#_saveLoader").show();
             var Helper = EventArgs.data.Helper;
-            if (Helper.ValidateData()) {              
+            if (Helper.ValidateData()) {
                 setTimeout(function () {
                     try {
                         Helper.SaveData(EventArgs.data.Model);
@@ -97,7 +97,7 @@ class BloodGroupsController extends ControllerBase {
             var Helper = EventArgs.data.Helper;
             Helper.AddRow();
             var RowCount = $("[id^=_lstRow]").length;
-            $("#_txtDepCode_" + RowCount).focus();
+            $("#_txtBGCode_" + RowCount).focus();
             var LastRow = $("#_lstBloodGroups").children().last();
             $("#_btnAdd").css({ left: LastRow.left, top: LastRow.position().top });
 
@@ -136,7 +136,7 @@ class BloodGroupsController extends ControllerBase {
             var Helper = EventArgs.data.Helper;
             Helper.EditRow(this.id);
             var id = this.id.split("_").slice(-1)[0];
-            $("#_txtDepCode_" + id).focus();
+            $("#_txtBGCode_" + id).focus();
         } catch (Ex) {
             new LogHelper(this.Settings).LogError(constructor.name, Ex);
             var Model = EventArgs.data.Model;
@@ -163,7 +163,8 @@ class BloodGroupsController extends ControllerBase {
         try {
             var Helper = EventArgs.data.Helper;
             Helper.RefreshRow(this.id);
-        } catch (Ex) {
+        }
+        catch (Ex) {
             new LogHelper(this.Settings).LogError(constructor.name, Ex);
             var Model = EventArgs.data.Model;
             if (Model) {

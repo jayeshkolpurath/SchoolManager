@@ -165,6 +165,7 @@ class CountriesHelper extends HelperBase {
             ($("#_txtCtrNationality_" + id).val().trim() == '') ? $("#_txtCtrNationality_" + id).addClass("txtValidationFail") : $("#_txtCtrNationality_" + id).removeClass("txtValidationFail");
         }
         catch (Ex) {
+            
             throw Ex;
         }
     }

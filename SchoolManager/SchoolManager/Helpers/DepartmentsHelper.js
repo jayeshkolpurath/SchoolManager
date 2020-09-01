@@ -48,6 +48,7 @@ class DepartmentsHelper extends HelperBase {
             //row wise textbox count
             var cnt = 2;
             var tabIdx = (i * cnt) + 1;
+            console.log("i:" + i + "  tabIdx:" + tabIdx );
             if ($("#_txtDepCode_" + i).val().trim() !== '' && $("#_txtDepName_" + i).val().trim() !== '') {
                 i++;
                 var html = "<div class='_lstRow' id='_lstRow_" + i + "'>";
