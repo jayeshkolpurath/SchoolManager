@@ -3,6 +3,8 @@
 class LayoutController extends ControllerBase {
     constructor() {
         super();
+        this.Model = new LayoutModel(this.Settings);
+        this.Model.GetMenu();
     }
     HandleMenuClicks() {
         try {
@@ -17,15 +19,18 @@ class LayoutController extends ControllerBase {
             new LogHelper(this.Settings).LogError("HandleMenuClicks", Ex);
         }
     }
-
     _FetchTopMenuItems() {
-        return [
-            { MenuName: "Home", MenuText: "Home" },
-            { MenuName: "Student", MenuText: "Student Register" },
-            { MenuName: "Settings", MenuText: "Settings" }
-        ];
-    }
+        try {
+            return [
+                { MenuName: "Home", MenuText: "Home" },
+                { MenuName: "Student", MenuText: "Student Register" },
+                { MenuName: "Settings", MenuText: "Settings" }
+            ];
 
+        } catch (Ex) {
+            throw Ex;
+        }
+    }
     _FetchLeftMenuItems(TopMenu) { //To be replaced with a data fetching from database
         var SideMenu;
         switch (TopMenu) {
@@ -60,12 +65,19 @@ class LayoutController extends ControllerBase {
                             { MenuName: "Departments", MenuText: "Departments", MenuLink: "/Views/Departments.html" },
                             { MenuName: "BloodGroups", MenuText: "BloodGroups", MenuLink: "/Views/BloodGroups.html" },
                             { MenuName: "Countries", MenuText: "Countries", MenuLink: "/Views/Countries.html" },
+                            { MenuName: "Relation", MenuText: "Relation", MenuLink: "/Views/Relation.html" },
+                            { MenuName: "Section", MenuText: "Section", MenuLink: "/Views/Section.html" },
                             { MenuName: "States", MenuText: "States", MenuLink: "/Views/States.html"}
                         ]
                     }
                 ];
                 break;
         }
+        return SideMenu;
+    }
+    _FetchLeftMenuItemsOld(TopMenu) { 
+        var SideMenu;
+        Model.GetMenu();     
         return SideMenu;
     }
     _FetchThemes() {
