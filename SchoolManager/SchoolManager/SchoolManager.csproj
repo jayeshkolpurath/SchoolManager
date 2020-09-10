@@ -112,6 +112,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\CSS\Section.css" />
+    <Content Include="Content\CSS\Relation.css" />
     <Content Include="Content\CSS\BloodGroups.css" />
     <Content Include="Content\CSS\Countries.css" />
     <Content Include="Content\CSS\States.css" />
@@ -137,6 +139,8 @@
     <Content Include="Content\Image\Theme.jpg" />
     <Content Include="Content\Image\User.jpg" />
     <Content Include="Content\Site.css" />
+    <Content Include="Controllers\SectionController.js" />
+    <Content Include="Controllers\RelationController.js" />
     <Content Include="Controllers\ControllerBase.js" />
     <Content Include="Controllers\BloodGroupsController.js" />
     <Content Include="Controllers\CountriesController.js" />
@@ -163,6 +167,8 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Helpers\SectionHelper.js" />
+    <Content Include="Helpers\RelationHelper.js" />
     <Content Include="Helpers\BloodGroupsHelper.js" />
     <Content Include="Helpers\CountriesHelper.js" />
     <Content Include="Helpers\StatesHelper.js" />
@@ -175,6 +181,9 @@
     <Content Include="Helpers\LoginHelper.js" />
     <Content Include="Helpers\StorageHelper.js" />
     <Content Include="Images\Loader\ball.gif" />
+    <Content Include="Models\SectionModel.js" />
+    <Content Include="Models\RelationModel.js" />
+    <Content Include="Models\LayoutModel.js" />
     <Content Include="Models\BloodGroupsModel.js" />
     <Content Include="Models\CountriesModel.js" />
     <Content Include="Models\StatesModel.js" />
@@ -213,6 +222,8 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
+    <Content Include="Views\Section.html" />
+    <Content Include="Views\Relation.html" />
     <Content Include="Views\BloodGroups.html" />
     <Content Include="Views\Countries.html" />
     <Content Include="Views\States.html" />
