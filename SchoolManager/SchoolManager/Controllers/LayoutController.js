@@ -67,7 +67,8 @@ class LayoutController extends ControllerBase {
                             { MenuName: "Countries", MenuText: "Countries", MenuLink: "/Views/Countries.html" },
                             { MenuName: "Relation", MenuText: "Relation", MenuLink: "/Views/Relation.html" },
                             { MenuName: "Section", MenuText: "Section", MenuLink: "/Views/Section.html" },
-                            { MenuName: "States", MenuText: "States", MenuLink: "/Views/States.html"}
+                            { MenuName: "States", MenuText: "States", MenuLink: "/Views/States.html" },
+                            { MenuName: "Currency", MenuText: "Currency", MenuLink: "/Views/Currency.html" }
                         ]
                     }
                 ];
