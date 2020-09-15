@@ -113,6 +113,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CSS\Currency.css" />
+    <Content Include="Content\CSS\Curriculum.css" />
     <Content Include="Content\CSS\Section.css" />
     <Content Include="Content\CSS\Relation.css" />
     <Content Include="Content\CSS\BloodGroups.css" />
@@ -141,6 +142,7 @@
     <Content Include="Content\Image\User.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Controllers\CurrencyController.js" />
+    <Content Include="Controllers\CurriculumController.js" />
     <Content Include="Controllers\SectionController.js" />
     <Content Include="Controllers\RelationController.js" />
     <Content Include="Controllers\ControllerBase.js" />
@@ -170,6 +172,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Helpers\CurrencyHelper.js" />
+    <Content Include="Helpers\CurriculumHelper.js" />
     <Content Include="Helpers\SectionHelper.js" />
     <Content Include="Helpers\RelationHelper.js" />
     <Content Include="Helpers\BloodGroupsHelper.js" />
@@ -185,6 +188,7 @@
     <Content Include="Helpers\StorageHelper.js" />
     <Content Include="Images\Loader\ball.gif" />
     <Content Include="Models\CurrencyModel.js" />
+    <Content Include="Models\CurriculumModel.js" />
     <Content Include="Models\SectionModel.js" />
     <Content Include="Models\RelationModel.js" />
     <Content Include="Models\LayoutModel.js" />
@@ -227,6 +231,7 @@
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Views\Currency.html" />
+    <Content Include="Views\Curriculums.html" />
     <Content Include="Views\Section.html" />
     <Content Include="Views\Relation.html" />
     <Content Include="Views\BloodGroups.html" />
