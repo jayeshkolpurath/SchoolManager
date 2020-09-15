@@ -1,0 +1,183 @@
+﻿body {
+    float: left;
+}
+
+._txtText {
+    float: left;
+    margin-left: 1vw;
+    vertical-align: top;
+}
+
+._lstRow {
+    display: flex;
+    flex-direction: row;
+    padding-top: 5px;
+    clear: left;
+}
+
+._lstHead {
+    /*float: none;*/
+    display: flex;
+    flex-direction: row;
+    padding-top: 5px;
+    clear: left;
+    font-weight: bold;
+}
+
+.ColHdCode {
+    margin-left: 3.5vw;
+}
+
+.ColHdName {
+    margin-left: 2vw;
+}
+
+
+#_lstCurriculums {
+    padding: 1vw 1vw .5vw 1vw;
+    display: flex;
+    flex-direction: column;
+    clear: left;
+}
+
+.RowAction {
+    float: left;
+}
+
+.RowID {
+    float: left;
+}
+
+#_btnAdd {
+    width: 1.5vw;
+    background: url('/Content/Image/Add.jpg');
+    height: 1.5vw;
+    background-size: 1.5vw;
+    margin-left: 4.3vw;
+    clear: left;
+}
+
+._btnRefresh {
+    margin-left: 1vw;
+    width: 1.5vw;
+    background: url('/Content/Image/Refresh.jpg');
+    height: 1.5vw;
+    background-size: 1.5vw;
+    float: left;
+}
+
+._btnDelete {
+    /*float: left;*/
+    width: 1.5vw;
+    background: url('/Content/Image/Delete.jpg');
+    height: 1.5vw;
+    margin-left: 1vw;
+    background-size: 1.5vw;
+}
+
+._btnEdit {
+    /*float: left;*/
+    width: 1.5vw;
+    background: url('/Content/Image/Edit.jpg');
+    height: 1.5vw;
+    margin-left: 1vw;
+    background-size: 1.5vw;
+}
+
+#_btnOK {
+    width: 1.5vw;
+    background: url('/Content/Image/OK.jpg');
+    height: 1.5vw;
+    background-size: 1.5vw;
+    margin-left: 49vw;
+    clear: left;
+}
+
+._lblGroupHd {
+    font-weight: bold;
+    width: 19vw;
+    font-size: larger;
+    margin-left: 4.5vw;
+}
+
+
+.CurName {
+    float: left;
+    width: 20vw;
+}
+
+#_saveLoader {
+    display: none;
+}
+
+#_saveSuccess {
+    display: none;
+}
+
+.CurCode {
+    float: left;
+    width: 10vw;
+}
+
+.lastContainer {
+    display: flex;
+    left: 40vw;
+}
+
+#Content {
+    height: 80vh;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+}
+
+@media only screen and (max-width: 599px) {
+    #_btnAdd {
+        background: url('/Content/Image/Add.jpg');
+        width: 5.5vw;
+        height: 5.5vw;
+        background-size: 5.5vw;
+        background-repeat: no-repeat;
+        margin-left: 4.3vw;
+        clear: left;
+    }
+
+    ._btnDelete {
+        /*float: left;*/
+        margin-left: 1vw;
+        background: url('/Content/Image/Delete.jpg');
+        width: 5.5vw;
+        height: 5.5vw;
+        background-size: 5.5vw;
+        background-repeat: no-repeat;
+    }
+
+    ._btnEdit {
+        /*float: left;*/
+        margin-left: 1vw;
+        background: url('/Content/Image/Edit.jpg');
+        width: 5.5vw;
+        height: 5.5vw;
+        background-size: 5.5vw;
+        background-repeat: no-repeat;
+    }
+
+    ._btnRefresh {
+        margin-left: 1vw;
+        background: url('/Content/Image/Refresh.jpg');
+        width: 5.5vw;
+        height: 5.5vw;
+        background-size: 5.5vw;
+        background-repeat: no-repeat;
+    }
+
+    #_btnOK {
+        background: url('/Content/Image/OK.jpg');
+        width: 5.5vw;
+        height: 5.5vw;
+        background-size: 5.5vw;
+        background-repeat: no-repeat;
+        margin-left: 49vw;
+        clear: left;
+    }
+}
